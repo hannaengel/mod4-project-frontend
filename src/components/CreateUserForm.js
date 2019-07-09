@@ -1,8 +1,8 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component} from 'react'
 
 import { Button, Form, Grid, Header } from 'semantic-ui-react'
 
-export default class CreateUserFOrm extends Component {
+export default class CreateUserForm extends Component {
     
     constructor() {
         super();
@@ -45,7 +45,11 @@ export default class CreateUserFOrm extends Component {
 
         return( 
             <div>
-                 <Header className='text-white' as='h1' dividing> Create Account </Header>
+                <header className='spacer'> </header>
+               <container className='login-section'>
+                <div className='login-div'>
+                <article className ='login'>
+                 <Header  as='h1' dividing> Create Account </Header>
                  <Grid centered columns={2} padded='vertically'>
                 <Form className='create-form'>
                     <Form.Field onChange={this.handleChange}>
@@ -74,10 +78,11 @@ export default class CreateUserFOrm extends Component {
                      <Form.Field>
                      <Button onClick={this.handleSubmit}>Create New User</Button>
                      </Form.Field>
-
-
                 </Form>
                 </Grid>
+                </article>
+                </div>
+                </container>     
             </div>
         )
     }

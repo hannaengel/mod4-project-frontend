@@ -41,7 +41,6 @@
 }
 
 .login{
-  
   display: block;
   float: none;
   position: relative;
@@ -76,8 +75,17 @@ body {
   background-size: cover;
 }
 
+.list-page-background{
+  background-color: black;
+}
+
 .spacer{
   margin: 10%;
+    padding: 0;
+    border: 0;
+}
+.small-spacer{
+  margin: 5%;
     padding: 0;
     border: 0;
 }
