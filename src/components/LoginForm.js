@@ -3,32 +3,68 @@ import React, { Component } from 'react'
 import { Button, Form } from 'semantic-ui-react'
 
 export default class LoginForm extends Component {
+
+    state = {
+        username: '',
+    };
+
     constructor() {
         super();
-        this.state = {
-            username: '',
-            password_digest: ''
-        };
+        this.username = React.createRef()
+        this.password = React.createRef()
+
+        if (this.getToken()) {
+          this.getProfile()
+        }
+        this.logout = this.logout.bind(this)
+    }
+
+    getToken(jwt) {
+      return localStorage.getItem('jwt')
+    }
+
+    logout() {
+      this.clearToken()
+      this.setState({username: ''})
+      {/* Go To login path here */}
+      return false
+    }
+
+    getProfile = () => {
+      let token = this.getToken()
+      fetch('http://localhost:3000/api/v1/profile', {
+        headers: {
+          'Authorization': 'Bearer ' + token
+        }
+      })
+      .then(res=>res.json())
+      .then(json=> {
+        console.log('profile:', json)
+        this.setState({user: json.user})
+      })
     }
 
     handleChange = event => {
         const {name, value} =event.target;
-        
+
         this.setState({
             [name]: value,
         }, ()=> console.log(this.state));
     }
 
-    login = () =>{
-        const username = this.state.username
-        const password_digest = this.state.password_digest
+    login = (ev) => {
+        console.log('log in')
+        ev.preventDefault()
+        const username = this.username.current.value
+        const password = this.password.current.value
+
         const URL = 'http://localhost:3000/api/v1/login/'
         const headers = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({user: {username, password_digest}})
+            body: JSON.stringify({user: {username, password}})
         }
         fetch(URL, headers)
             .then(res=>res.json())
@@ -45,48 +81,54 @@ export default class LoginForm extends Component {
 
     saveToken = (token) =>{
         console.log(token)
+        localStorage.setItem('jwt', token)
     }
 
-   getProfile = ()=>{
-        console.log('IM GONNA TAKE YOU TO YOUR PROFILE')
+    clearToken(jwt) {
+      localStorage.setItem('jwt', '')
     }
-    
+
     handleSubmit = ()=>{
         this.login()
     }
 
 
     render() {
-        return( 
-           
+        return(
             <div>
                 <header className='spacer'> </header>
-               <container className='login-section'>
+               <div className='login-section'>
                 <div className='login-div'>
                 <article className ='login'>
                 <h2>Sign in</h2>
                 <p>Not a member? <a color='red'> Sign Up</a></p>
-                <Form>
+                <Form onSubmit={this.login}>
                     <Form.Field onChange={this.handleChange}>
 
                      <label>Username</label>
-                     <input name='username' placeholder='username' />
+                     <input name='username' type="text" placeholder='username' ref={this.username} />
                      </Form.Field>
 
-                     <Form.Field className='login-text' onChange={this.handleChange}>
-                     <label className='login-text'>Password</label>
-                     <input name='password_digest' placeholder='password' />
+                     <Form.Field  onChange={this.handleChange}>
+                     <label>Password</label>
+                     <input name='password' type="password" placeholder='password' ref={this.password} />
+
                      </Form.Field>
 
                      <Form.Field>
-                     <Button onClick={this.handleSubmit}>Login</Button>
+                     <input type = "submit" value="log in" />
                      </Form.Field>
+
+                     <Form.Field>
+                     <button type="button" onClick={this.logout}>log out</button>
+                     </Form.Field>
+
 
                 </Form>
                 </article>
                 </div>
-                </container>
-                
+              </div>
+
             </div>
         )
     }

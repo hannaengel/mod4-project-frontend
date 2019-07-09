@@ -2,20 +2,19 @@ import React, { Component} from 'react'
 
 import { Button, Form, Grid, Header } from 'semantic-ui-react'
 
-export default class CreateUserForm extends Component {
-    
+export default class CreateUserFOrm extends Component {
+
     constructor() {
         super();
         this.state = {
             username: '',
-            password_digest: '',
             email_address: ''
         };
     }
 
     handleChange = event => {
         const {name, value} =event.target;
-        
+
         this.setState({
             [name]: value,
         }, ()=> console.log(this.state));
@@ -43,7 +42,7 @@ export default class CreateUserForm extends Component {
 
     render() {
 
-        return( 
+        return(
             <div>
                 <header className='spacer'> </header>
                <container className='login-section'>
@@ -60,7 +59,7 @@ export default class CreateUserForm extends Component {
 
                      <Form.Field  onChange={this.handleChange}>
                      <label>Password</label>
-                     <input name='password_digest' placeholder='password' />
+                     <input name='password' placeholder='password' />
                      </Form.Field>
 
                      <Form.Field  onChange={this.handleChange}>
@@ -68,7 +67,7 @@ export default class CreateUserForm extends Component {
                      <input name='email_address' placeholder='email' />
                      </Form.Field>
 
-            
+
 
                      <Form.Field  onChange={this.handleChange}>
                      <label>Zipcode</label>
