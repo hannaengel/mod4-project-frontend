@@ -43,25 +43,27 @@ export default class SwipeCardContainer extends Component {
       }
       
 
-      getDog = () =>{
-        const dogArray = this.state.dogs
-        const index = this.state.selectedDog
-        return dogArray[index]
-      }
+      // getDog = () =>{
+      //   const dogArray = this.state.dogs
+      //   const index = this.state.selectedDog
+      //   return dogArray[index]
+      // }
+
     render() {
     
         return (
             <div>
                 <Navbar />
-                <h1 className='spacer'></h1>
+                <h1 className='small-spacer'></h1>
+                {this.state.dogs.length>0?
             <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal">
                 {document.body.style = 'background: white;'}
-              <SwipeCardFront key="front" dog={this.getDog} onClick={this.handleClick} onNext={this.handleNext} onFavorite={this.handleFavorite}>
+              <SwipeCardFront key="front" dog={this.state.dogs[this.state.selectedDog]} onClick={this.handleClick} onNext={this.handleNext} onFavorite={this.handleFavorite}>
               </SwipeCardFront>
        
-              <SwipeCardBack key="back" dog={this.getDog} onClick={this.handleClick}>
+              <SwipeCardBack key="back" dog={this.state.dogs[this.state.selectedDog]} onClick={this.handleClick}>
               </SwipeCardBack>
-            </ReactCardFlip>
+            </ReactCardFlip>: null}
             </div>
         )
     }
