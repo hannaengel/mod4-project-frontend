@@ -33,15 +33,40 @@
 }
 
 .create-form{
-      margin-top: 50px;
-      background-color: none;
-      color: white;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  background: transparent;
 }
 
-.text-white {
-  color: white;
+.login{
+  
+  display: block;
+  float: none;
+  position: relative;
+  color: palevioletred;
+  
+}
+.login-section{
+  margin-top: 20px;
+  padding: 30px;
+  margin-left: 40px;
+  display: block;
+ 
 }
 
+.login-div{
+ 
+  border-radius: 20px;
+  padding: 100px 80px 70px 100px;
+  background-color: whitesmoke;
+  opacity: 0.9;
+  position: relative; left: 50%;
+  transform: translateX(-50%);
+  width: 70%
+  
+}
 
 body { 
   background: url('./images/background.jpg') no-repeat center center fixed; 
@@ -49,4 +74,10 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+
+.spacer{
+  margin: 10%;
+    padding: 0;
+    border: 0;
 }

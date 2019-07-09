@@ -22,13 +22,14 @@ export default class LoginForm extends Component {
     login = () =>{
         const username = this.state.username
         const password = this.state.password
+
         const URL = 'http://localhost:3000/api/v1/login/'
         const headers = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({user: {username, password}})
+            body: JSON.stringify({user: {username, password_digest}})
         }
         fetch(URL, headers)
             .then(res=>res.json())
@@ -58,8 +59,14 @@ export default class LoginForm extends Component {
 
     render() {
         return(
+
             <div>
-                 <Grid centered columns={2} padded='vertically'>
+                <header className='spacer'> </header>
+               <container className='login-section'>
+                <div className='login-div'>
+                <article className ='login'>
+                <h2>Sign in</h2>
+                <p>Not a member? <a color='red'> Sign Up</a></p>
                 <Form>
                     <Form.Field onChange={this.handleChange}>
 
@@ -70,6 +77,7 @@ export default class LoginForm extends Component {
                      <Form.Field  onChange={this.handleChange}>
                      <label>Password</label>
                      <input name='password' placeholder='password' />
+
                      </Form.Field>
 
                      <Form.Field>
@@ -77,7 +85,10 @@ export default class LoginForm extends Component {
                      </Form.Field>
 
                 </Form>
-                </Grid>
+                </article>
+                </div>
+                </container>
+                
             </div>
         )
     }
