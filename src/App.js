@@ -8,8 +8,8 @@ function App() {
   return (
     <div className="App">
       {/* <Navbar />  */}
-      {/* <LoginForm /> */}
-      <CreateUserForm />
+      <LoginForm />
+      {/* <CreateUserForm /> */}
     </div>
   );
 }
