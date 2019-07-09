@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Button } from 'semantic-ui-react'
 import { Menu } from 'semantic-ui-react' 
 
 export default class Navbar extends Component {
