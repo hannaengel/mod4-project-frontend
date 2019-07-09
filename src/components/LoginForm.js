@@ -7,13 +7,13 @@ export default class LoginForm extends Component {
         super();
         this.state = {
             username: '',
-            password_digest: ''
+            password: ''
         };
     }
 
     handleChange = event => {
         const {name, value} =event.target;
-        
+
         this.setState({
             [name]: value,
         }, ()=> console.log(this.state));
@@ -21,7 +21,8 @@ export default class LoginForm extends Component {
 
     login = () =>{
         const username = this.state.username
-        const password_digest = this.state.password_digest
+        const password = this.state.password
+
         const URL = 'http://localhost:3000/api/v1/login/'
         const headers = {
             method: 'POST',
@@ -50,15 +51,15 @@ export default class LoginForm extends Component {
    getProfile = ()=>{
         console.log('IM GONNA TAKE YOU TO YOUR PROFILE')
     }
-    
+
     handleSubmit = ()=>{
         this.login()
     }
 
 
     render() {
-        return( 
-           
+        return(
+
             <div>
                 <header className='spacer'> </header>
                <container className='login-section'>
@@ -73,9 +74,10 @@ export default class LoginForm extends Component {
                      <input name='username' placeholder='username' />
                      </Form.Field>
 
-                     <Form.Field className='login-text' onChange={this.handleChange}>
-                     <label className='login-text'>Password</label>
-                     <input name='password_digest' placeholder='password' />
+                     <Form.Field  onChange={this.handleChange}>
+                     <label>Password</label>
+                     <input name='password' placeholder='password' />
+
                      </Form.Field>
 
                      <Form.Field>
