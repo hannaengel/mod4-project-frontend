@@ -8,7 +8,6 @@ export default class CreateUserFOrm extends Component {
         super();
         this.state = {
             username: '',
-            password: '',
             email_address: ''
         };
     }
