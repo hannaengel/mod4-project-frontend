@@ -2,9 +2,28 @@ import React, { Component } from 'react'
 import DogCard from './DogCard';
 import { Header, Icon} from 'semantic-ui-react'
 import Navbar from './Navbar';
+
 export default class DogList extends Component {
 
-//state here
+    constructor() {
+        super();
+        this.state = {
+            dogs: []
+        };
+    }
+
+    componentDidMount(){
+        this.fetchDogs()
+    }
+
+    fetchDogs = () =>{
+        fetch('http://localhost:3000/api/v1/pets')
+            .then(res=>res.json())
+            .then(data => {
+            console.log(data)
+            this.setState({dogs: data})
+        })
+    }
     render() {
         return( 
             
@@ -23,7 +42,7 @@ export default class DogList extends Component {
 
    
                 <div className="ui three column grid" >
-                {this.props.dogs.map((dog) => {
+                {this.state.dogs.map((dog) => {
                     return   <div className="column"><DogCard key={dog.id} dog={dog}/></div>
                 })}
                 </div>

@@ -8,8 +8,7 @@ import SwipCardContainer from './components/SwipeCardContainer';
 
 
 
-const dogs = [{id: 1, name:'fido', image: 'https://images.pexels.com/photos/356378/pexels-photo-356378.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'}, 
-{id: 2, name:'rick', image: 'https://images.pexels.com/photos/406014/pexels-photo-406014.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'}]
+
 
 const dog = {id: 1, name:'fido', image: 'https://images.pexels.com/photos/356378/pexels-photo-356378.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'}
 function App() {
@@ -18,8 +17,8 @@ function App() {
       {/* <Navbar />  */}
       {/* <LoginForm /> */}
       {/* <CreateUserForm />  */}
-      {/* <DogList dogs={dogs} /> */}
-      <SwipCardContainer dog={dog} />
+      {/* <DogList  /> */}
+      <SwipCardContainer />
     </div>
   );
 }
