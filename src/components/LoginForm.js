@@ -116,12 +116,9 @@ export default class LoginForm extends Component {
                      </Form.Field>
 
                      <Form.Field>
-                     <input type = "submit" value="log in" />
+                     <input type="submit" class="large ui button" value="Log In" />
                      </Form.Field>
 
-                     <Form.Field>
-                     <button type="button" onClick={this.logout}>log out</button>
-                     </Form.Field>
 
 
                 </Form>
