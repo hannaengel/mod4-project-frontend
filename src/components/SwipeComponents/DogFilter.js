@@ -32,7 +32,6 @@ export default class DogFilter extends Component {
 
   handleSexClick = (ev) => {
     ev.persist()
-    console.log(ev)
     let btnName = ev.currentTarget.attributes[0].value
     let selectedBtn = document.getElementById(btnName)
     let allBtn = document.getElementById("all-sexes")
