@@ -13,7 +13,7 @@ export default class SwipeCardFront extends Component {
         this.props.onFavorite(this.props.dog)
     }
     render() {
-        return( 
+        return(
             <div>
                   <div class="ui centered card" >
                     <div class="content">
