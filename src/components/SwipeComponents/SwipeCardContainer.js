@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ReactCardFlip from 'react-card-flip';
 import SwipeCardFront from './SwipeCardFront';
 import SwipeCardBack from './SwipeCardBack';
+import DogFilter from './DogFilter';
 import Navbar from '../Navbar.js';
 
 
@@ -75,6 +76,7 @@ export default class SwipeCardContainer extends Component {
               <SwipeCardBack key="back" dog={this.state.dogs[this.state.selectedDog]} onClick={this.handleClick}>
               </SwipeCardBack>
             </ReactCardFlip>: null}
+            <DogFilter />
             </div>
         )
     }

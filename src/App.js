@@ -17,10 +17,10 @@ function App() {
       {/* <Navbar />  */}
       {/*<LoginForm /> */}
 
-      {/* <LoginForm /> */}
-      {/* <CreateUserForm />  */}
+      {/*<LoginForm /> */}
+      {/* <CreateUserForm /> */}
       {/* <DogList  /> */}
-      {<SwipeCardContainer />}
+      <SwipeCardContainer />
     </div>
   );
 }
