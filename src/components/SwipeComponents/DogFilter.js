@@ -25,6 +25,9 @@ export default class DogFilter extends Component {
     this.state.desiredSex.forEach((sex) => {
       this.activateBtn(sex)
     })
+
+    //add code to fetch dogs from backend here
+
   }
 
   handleSexClick = (ev) => {
