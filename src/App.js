@@ -17,11 +17,15 @@ function App() {
       {/* <Navbar />  */}
       {/*<LoginForm /> */}
 
-      {/* <LoginForm /> */}
-      {/* <CreateUserForm />  */}
+      {/*<LoginForm /> */}
+      {/* <CreateUserForm /> */}
       {/* <DogList  /> */}
+
       {/* {<SwipeCardContainer />} */}
       <Profile user={user}/>
+
+    {/*<SwipeCardContainer />*/}
+
     </div>
   );
 }
