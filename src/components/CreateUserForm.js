@@ -1,21 +1,20 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component} from 'react'
 
 import { Button, Form, Grid, Header } from 'semantic-ui-react'
 
 export default class CreateUserFOrm extends Component {
-    
+
     constructor() {
         super();
         this.state = {
             username: '',
-            password_digest: '',
             email_address: ''
         };
     }
 
     handleChange = event => {
         const {name, value} =event.target;
-        
+
         this.setState({
             [name]: value,
         }, ()=> console.log(this.state));
@@ -43,9 +42,13 @@ export default class CreateUserFOrm extends Component {
 
     render() {
 
-        return( 
+        return(
             <div>
-                 <Header className='text-white' as='h1' dividing> Create Account </Header>
+                <header className='spacer'> </header>
+               <container className='login-section'>
+                <div className='login-div'>
+                <article className ='login'>
+                 <Header  as='h1' dividing> Create Account </Header>
                  <Grid centered columns={2} padded='vertically'>
                 <Form className='create-form'>
                     <Form.Field onChange={this.handleChange}>
@@ -56,7 +59,7 @@ export default class CreateUserFOrm extends Component {
 
                      <Form.Field  onChange={this.handleChange}>
                      <label>Password</label>
-                     <input name='password_digest' placeholder='password' />
+                     <input name='password' placeholder='password' />
                      </Form.Field>
 
                      <Form.Field  onChange={this.handleChange}>
@@ -64,7 +67,7 @@ export default class CreateUserFOrm extends Component {
                      <input name='email_address' placeholder='email' />
                      </Form.Field>
 
-            
+
 
                      <Form.Field  onChange={this.handleChange}>
                      <label>Zipcode</label>
@@ -74,10 +77,11 @@ export default class CreateUserFOrm extends Component {
                      <Form.Field>
                      <Button onClick={this.handleSubmit}>Create New User</Button>
                      </Form.Field>
-
-
                 </Form>
                 </Grid>
+                </article>
+                </div>
+                </container>     
             </div>
         )
     }

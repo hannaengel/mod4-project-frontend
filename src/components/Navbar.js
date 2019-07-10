@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Button } from 'semantic-ui-react'
 import { Menu } from 'semantic-ui-react' 
+import logo from '../images/logo.png'
 
 export default class Navbar extends Component {
 
@@ -8,15 +8,26 @@ export default class Navbar extends Component {
     render() {
         return( 
             <div>
-                <Menu> 
-                <Menu.Item
-                    name='icon here'
-
-                    />
-                    <Menu.Item 
-                    name='Profile'
-                    />
-                </Menu>
+               <div class="ui top attached menu">
+                <div class="item">
+                <img class="ui avatar image" src={logo} />
+                Browse
+                </div>
+                
+                <a class="item">
+                Favorites
+                </a>
+                <div class="right menu">
+                <a class="item">
+                Profile
+                </a>
+                <div class="item">
+                <div class="ui secondary button">Log Out</div>
+            </div>
+            </div>
+            </div>
+           
+          
             </div>
         )
     }
