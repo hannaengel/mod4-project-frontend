@@ -19,8 +19,8 @@ function App() {
 
       {/* <LoginForm /> */}
       {/* <CreateUserForm />  */}
-      <DogList  />
-      {/* <SwipeCardContainer /> */}
+      {/* <DogList  /> */}
+      {<SwipeCardContainer />}
     </div>
   );
 }

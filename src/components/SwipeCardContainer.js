@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ReactCardFlip from 'react-card-flip';
 import SwipeCardFront from './SwipeCardFront';
 import SwipeCardBack from './SwipeCardBack';
-import Navbar from '../Navbar.js';
+import Navbar from './Navbar';
 
 
 export default class SwipeCardContainer extends Component {
@@ -10,8 +10,9 @@ export default class SwipeCardContainer extends Component {
     constructor() {
         super();
           this.state = {
+          user_id: 22,
           isFlipped: false,
-          selectedDog: 0,
+          selectedDog: 1,
           dogs: []
         };
       }
@@ -38,8 +39,18 @@ export default class SwipeCardContainer extends Component {
         this.setState(prevState => ({ selectedDog: prevState.selectedDog + 1}), () => console.log(this.state.selectedDog));
       }
 
-      handleFavorite = dog => {
+      handleFavorite = (dog) => {
+        let user_id = this.state.user_id
         console.log(dog)
+        return fetch(`http://localhost:3000/api/v1/user_pets`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: JSON.stringify({pet_id: dog.id, user_id: user_id})
+        })
+        .then(res=>res.json())
       }
 
 
