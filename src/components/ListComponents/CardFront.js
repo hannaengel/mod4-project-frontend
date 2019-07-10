@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, Header } from 'semantic-ui-react'
+
 
 
 export default class CardFront extends Component {
@@ -13,7 +13,7 @@ handleClick = e => {
                 <div class="ui card"  onClick={this.handleClick}>
                     <div class="content">
                     <div class="ui medium bordered image">
-                    <img src={medium_photo_url}/>
+                    <img alt='dog' src={medium_photo_url}/>
                     </div>
                     <div class="ui medium header">
                         {name}

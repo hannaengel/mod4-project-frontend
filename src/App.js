@@ -8,12 +8,12 @@ import SwipeCardContainer from './components/SwipeComponents/SwipeCardContainer'
 import ReactDOM from 'react-dom';
 // Step 1. Import react-router functions
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Profile from './components/ProfileComponents/Profile.js'
 
 
 
 
-
-const dog = {id: 1, name:'fido', image: 'https://images.pexels.com/photos/356378/pexels-photo-356378.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'}
+const user = {username: 'Hanna', password:'pig', email: 'content', zipcode:'32934'}
 function App() {
   return (
     <div className="App">
@@ -25,8 +25,8 @@ function App() {
         <Route path={'/liked'} component={DogList} />
       </Router>
 
-      {/* <DogList  /> */}
       {/*<SwipeCardContainer /> */}
+      <Profile user={user}/>
     </div>
   );
 }
