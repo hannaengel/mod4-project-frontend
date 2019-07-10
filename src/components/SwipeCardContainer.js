@@ -10,6 +10,7 @@ export default class SwipeCardContainer extends Component {
     constructor() {
         super();
           this.state = {
+          user_id: 22,
           isFlipped: false,
           selectedDog: 1,
           dogs: []
@@ -29,7 +30,7 @@ export default class SwipeCardContainer extends Component {
             this.setState({dogs: data})
         })
     }
-     
+
       handleClick = e => {
         e.preventDefault();
         this.setState(prevState => ({ isFlipped: !prevState.isFlipped }));
@@ -38,10 +39,20 @@ export default class SwipeCardContainer extends Component {
         this.setState(prevState => ({ selectedDog: prevState.selectedDog + 1}), () => console.log(this.state.selectedDog));
       }
 
-      handleFavorite = dog => {
+      handleFavorite = (dog) => {
+        let user_id = this.state.user_id
         console.log(dog)
+        return fetch(`http://localhost:3000/api/v1/user_pets`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: JSON.stringify({pet_id: dog.id, user_id: user_id})
+        })
+        .then(res=>res.json())
       }
-      
+
 
       // getDog = () =>{
       //   const dogArray = this.state.dogs
@@ -50,7 +61,7 @@ export default class SwipeCardContainer extends Component {
       // }
 
     render() {
-    
+
         return (
             <div>
                 <Navbar />
@@ -60,7 +71,7 @@ export default class SwipeCardContainer extends Component {
                 {document.body.style = 'background: white;'}
               <SwipeCardFront key="front" dog={this.state.dogs[this.state.selectedDog]} onClick={this.handleClick} onNext={this.handleNext} onFavorite={this.handleFavorite}>
               </SwipeCardFront>
-       
+
               <SwipeCardBack key="back" dog={this.state.dogs[this.state.selectedDog]} onClick={this.handleClick}>
               </SwipeCardBack>
             </ReactCardFlip>: null}
