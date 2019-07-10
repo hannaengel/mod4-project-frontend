@@ -18,7 +18,7 @@ export default class SwipeCardFront extends Component {
                   <div class="ui centered card" >
                     <div class="content">
                     <div class="ui medium bordered image">
-                    <img src={this.props.dog.medium_photo_url}/>
+                    <img alt='dog' src={this.props.dog.medium_photo_url}/>
                     </div>
                     <div class="ui medium header">
                         {this.props.dog.name}
