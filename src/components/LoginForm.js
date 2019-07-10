@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Button, Form } from 'semantic-ui-react'
+import { Form } from 'semantic-ui-react'
 
 export default class LoginForm extends Component {
 

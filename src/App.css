@@ -89,3 +89,8 @@ body {
     padding: 0;
     border: 0;
 }
+
+.list-top-image{
+  background-color: whitesmoke;
+  padding: 5px;
+}

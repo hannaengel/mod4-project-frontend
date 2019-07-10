@@ -3,8 +3,8 @@ import './App.css';
 import Navbar from './components/Navbar'
 import LoginForm from './components/LoginForm'
 import CreateUserForm from './components/CreateUserForm'
-import DogList from './components/DogList';
-import SwipCardContainer from './components/SwipeCardContainer';
+import DogList from './components/ListComponents/DogList';
+import SwipeCardContainer from './components/SwipeComponents/SwipeCardContainer';
 
 
 
@@ -19,8 +19,8 @@ function App() {
 
       {/* <LoginForm /> */}
       {/* <CreateUserForm />  */}
-      {/* <DogList  /> */}
-      <SwipCardContainer />
+      <DogList  />
+      {/* <SwipeCardContainer /> */}
     </div>
   );
 }

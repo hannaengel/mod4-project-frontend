@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import DogCard from './DogCard';
 import { Header, Icon} from 'semantic-ui-react'
-import Navbar from './Navbar';
+import Navbar from '/Users/hannaengel/Development/projects/mod4-project-frontend/src/components/Navbar.js';
 
 export default class DogList extends Component {
 
@@ -30,6 +30,7 @@ export default class DogList extends Component {
             <React.Fragment> 
             {document.body.style = 'background: white;'}
             <Navbar />
+            <div className='list-top-image'>
                 <header className='small-spacer'></header>
                 <div>
                     <Header as='h1' icon textAlign='center'>
@@ -39,7 +40,7 @@ export default class DogList extends Component {
                  
                 </div>
                 <header className='small-spacer'></header>
-
+                </div>
    
                 <div className="ui three column grid" >
                 {this.state.dogs.map((dog) => {

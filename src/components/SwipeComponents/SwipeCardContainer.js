@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ReactCardFlip from 'react-card-flip';
 import SwipeCardFront from './SwipeCardFront';
 import SwipeCardBack from './SwipeCardBack';
-import Navbar from './Navbar';
+import Navbar from '/Users/hannaengel/Development/projects/mod4-project-frontend/src/components/Navbar.js';
 
 
 export default class SwipeCardContainer extends Component {
@@ -11,7 +11,7 @@ export default class SwipeCardContainer extends Component {
         super();
           this.state = {
           isFlipped: false,
-          selectedDog: 1,
+          selectedDog: 0,
           dogs: []
         };
       }
