@@ -19,14 +19,13 @@ function App() {
     <div className="App">
 
       <Router>
-        <Navbar />
+        {/*<Navbar />*/}
         <Route exact path="/" component={LoginForm} />
         <Route path={'/users/new'} component={CreateUserForm} />
         <Route path={'/liked'} component={DogList} />
+        <Route path={'/profile'} render={(props) => <Profile {...props}/>}/>
+        <Route path={'/browse'} component={SwipeCardContainer} />
       </Router>
-
-      {/*<SwipeCardContainer /> */}
-      <Profile user={user}/>
     </div>
   );
 }

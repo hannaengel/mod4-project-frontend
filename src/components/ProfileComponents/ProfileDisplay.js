@@ -9,18 +9,18 @@ export default class ProfileDisplay extends Component {
            isToggleOn: false
        };
    }
-   
+
     handleClick = () =>{
         this.setState(prevState => (
          {isToggleOn: !prevState.isToggleOn}
         ), () => console.log(this.state));
         }
-    
-        
-    render() {
-        const {username, password, email, zipcode} = this.props.user
 
-        return( 
+
+    render() {
+        const {username, password, email, zipcode} = this.props
+
+        return(
                 this.state.isToggleOn===false?
                     <div className='profile-header'>
                      <h1>Your Information</h1>
@@ -28,10 +28,10 @@ export default class ProfileDisplay extends Component {
                     <Header as='h3'>Password: {password}</Header>
                     <Header as='h3'>Email: {email}</Header>
                     <Header as='h3'>Zipcode: {zipcode} </Header>
-                    <button onClick={this.handleClick} class="ui pink button"> 
+                    <button onClick={this.handleClick} class="ui pink button">
                     <i onClick={this.handleClick} class="edit outline icon"></i>Edit</button>
                     </div>: <div><EditForm user={this.props.user} onClick={this.props.onClick}/></div>
-  
+
         )
     }
 }
