@@ -3,26 +3,43 @@ import { Form, Grid, Button, Header, TextArea } from 'semantic-ui-react'
 
 export default class EmailForm extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            email: ''
+            message_template: this.props.user.message_template,
+            user_id: this.props.user.user_id
         };
     }
     handleChange = event => {
         const {value} =event.target;
 
-        this.setState({
-            email: value,
-        });
+        this.setState(prevState => ({
+            message_template: value
+        }), ()=> console.log(this.state.message_template))
     }
 
 
-
-    handleSubmit = (e) =>{
+    handleSubmit = e =>{
         e.preventDefault();
-        this.props.onClick(this.state.email)
+        const url = `http://localhost:3000/api/v1/users/${this.state.user_id}`
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+             message_template: this.state.message_template,
+             id: this.state.user_id
+            })
+        })
+      .then(res=>res.json())
+      .then(json => {
+        console.log(json)
+      })
+      window.location.replace("http://localhost:3001/profile");
     }
+
+
     render() {
         return( 
             <div>

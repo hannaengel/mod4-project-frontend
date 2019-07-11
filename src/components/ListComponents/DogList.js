@@ -48,14 +48,13 @@ export default class DogList extends Component {
 
             <React.Fragment>
             <Navbar />
-            <div className='list-top-image'>
+            <div className='list-top-image' >
                 <header className='small-spacer'></header>
                 <div>
-                    <Header as='h1' icon textAlign='center'>
-                    <Icon name='paw' circular />
-                    <Header.Content>Favorites</Header.Content>
-                    </Header>
-
+                <h1 class="ui center aligned icon header">
+                    <i className=" paw icon"></i>
+                     Favorites
+                </h1>
                 </div>
                 <header className='small-spacer'></header>
                 </div>

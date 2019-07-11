@@ -25,7 +25,6 @@ export default class EditForm extends Component {
     //add fetch here!!!
     handleSubmit = e =>{
         e.preventDefault();
-        this.props.onClick(this.state)
         const url = `http://localhost:3000/api/v1/users/${this.state.user_id}`
         fetch(url, {
           method: 'PUT',
@@ -48,7 +47,7 @@ export default class EditForm extends Component {
           zipcode: json.zipcode,
           email: json.email_address
         })
-        {/*this.props.updateProfile*/}
+        window.location.replace("http://localhost:3001/profile");
       })
     }
 

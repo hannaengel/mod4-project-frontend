@@ -80,12 +80,14 @@ export default class SwipeCardContainer extends Component {
       // }
 
     render() {
-      document.body.style = 'background: whitesmoke;';
+      
         return (
-            <div>
+            <div className='cover'>
                 <Navbar />
+               
                 <h1 className='small-spacer'></h1>
                 {this.state.dogs.length>0?
+               
             <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal">
                 {document.body.style = 'background: white;'}
               <SwipeCardFront key="front" dog={this.state.dogs[this.state.selectedDog]} onClick={this.handleClick} onNext={this.handleNext} onFavorite={this.handleFavorite}>

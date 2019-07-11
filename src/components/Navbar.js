@@ -3,6 +3,7 @@ import { Menu } from 'semantic-ui-react'
 import logo from '../images/logo.png'
 import { Link } from 'react-router-dom'
 
+
 export default class Navbar extends Component {
 
 //state here
@@ -14,6 +15,13 @@ export default class Navbar extends Component {
           username: ''
         };
         this.getProfile()
+      }
+
+    logout() {
+      console.log('logout is hit!')
+      localStorage.setItem('jwt', '')
+      window.location.replace("http://localhost:3001/");
+      return false
       }
 
     getProfile = () => {
@@ -57,7 +65,7 @@ export default class Navbar extends Component {
                 Profile
                 </a>
                 <div class="item">
-                <div href="http://localhost:3001/" class="ui secondary button">Log Out</div>
+                <div onClick={this.logout} class="ui secondary button">Log Out</div>
             </div>
             </div>
             </div>

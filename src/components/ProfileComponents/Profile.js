@@ -11,7 +11,7 @@ export default class Profile extends Component {
             selected: '',
             profileInfo: {
                 username: '',
-                email: '',
+                email_address: '',
                 zipcode: '',
                 user_id: null,
                 message_template: ''
@@ -34,7 +34,7 @@ export default class Profile extends Component {
             profileInfo: {
               ...this.state.profileInfo,
               username: json.user.username,
-              email: json.user.email_address,
+              email_address: json.user.email_address,
               zipcode: json.user.zipcode,
               user_id: json.user.id,
               message_template: json.user.message_template
@@ -71,7 +71,6 @@ export default class Profile extends Component {
      }
 
      editProfile = newState =>{
-
      }
 
     render() {
@@ -101,8 +100,8 @@ export default class Profile extends Component {
                 </div>
             </div>
             {this.state.selected==='email'?
-            <EmailDisplay user={this.props.user} name={this.state.username} onClick={this.editEmail}/>:
-            <ProfileDisplay updateProfile={this.getProfile} user={this.state.profileInfo} onClick={this.editProfile}/>}
+            <EmailDisplay updateEmail={this.getProfile} user={this.state.profileInfo} />:
+            <ProfileDisplay updateProfile={this.getProfile} user={this.state.profileInfo}/>}
         </section>
         )
     }

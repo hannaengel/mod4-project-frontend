@@ -26,13 +26,6 @@ export default class LoginForm extends Component {
       return localStorage.getItem('jwt')
     }
 
-    logout() {
-      this.clearToken()
-      this.setState({username: ''})
-      
-      {/* Go To login path here */}
-      return false
-    }
 
     getProfile = () => {
       let token = this.getToken()

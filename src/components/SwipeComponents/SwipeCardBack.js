@@ -8,7 +8,7 @@ export default class SwipeCardBack extends Component {
     render() {
         return( 
             <div>
-                  <div class="ui centered card"  onClick={this.handleClick}>
+                  <div onClick={this.handleClick}>
                     <div class="content">
                     <div class="ui medium header">
                         {this.props.dog.name}

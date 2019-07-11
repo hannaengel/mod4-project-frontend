@@ -107,13 +107,27 @@ body {
 }
 
 .list-top-image{
-  background-color: whitesmoke;
-  padding: 5px;
+  background-image: url("./images/list..png");
+  padding: 10px;
+  
 }
 
 .profile-header{
 
   padding: 8%;
   text-align: left;
+
+}
+
+.swipe-image {
+  height: 350px !important;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.cover {
+
+
+background-image: url("./images/wall.png");
 
 }
