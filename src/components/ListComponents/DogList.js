@@ -26,7 +26,7 @@ export default class DogList extends Component {
         */}
 
         let token = localStorage.getItem("jwt")
-        fetch('http://localhost:3000/api/v1/users/displayPets', {
+        fetch('http://localhost:3000/api/v1/displayPets', {
           headers: {
             'Authorization': 'Bearer ' + token
           }

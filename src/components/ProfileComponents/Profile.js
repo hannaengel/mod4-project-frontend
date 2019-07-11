@@ -5,8 +5,8 @@ import ProfileDisplay from './ProfileDisplay'
 import EmailDisplay from './EmailDisplay'
 
 export default class Profile extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             selected: '',
             profileInfo: {
@@ -71,7 +71,7 @@ export default class Profile extends Component {
      }
 
      editProfile = newState =>{
-         console.log(newState, 'hit!')
+
      }
 
     render() {
@@ -102,7 +102,7 @@ export default class Profile extends Component {
             </div>
             {this.state.selected==='email'?
             <EmailDisplay user={this.props.user} name={this.state.username} onClick={this.editEmail}/>:
-            <ProfileDisplay user={this.state.profileInfo} onClick={this.editProfile}/>}
+            <ProfileDisplay updateProfile={this.getProfile} user={this.state.profileInfo} onClick={this.editProfile}/>}
         </section>
         )
     }

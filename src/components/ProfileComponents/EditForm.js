@@ -14,11 +14,7 @@ export default class EditForm extends Component {
     }
 
     handleChange = event => {
-        {/*const {name, value} =event.target;
 
-        this.setState({
-            [name]: value,
-        }, ()=> console.log(this.state)); */}
         let name = event.target.name
         let value = event.target.value
         this.setState({
@@ -31,9 +27,31 @@ export default class EditForm extends Component {
         e.preventDefault();
         this.props.onClick(this.state)
         const url = `http://localhost:3000/api/v1/users/${this.state.user_id}`
-
-
+        fetch(url, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: JSON.stringify({
+          id: this.state.user_id,
+          username: this.state.username,
+          zipcode: this.state.zipcode,
+          email_address: this.state.email
+        })
+        })
+      .then(res=>res.json())
+      .then(json => {
+        console.log(json)
+        this.setState({
+          username: json.username,
+          zipcode: json.zipcode,
+          email: json.email_address
+        })
+        {/*this.props.updateProfile*/}
+      })
     }
+
     render() {
         const {username, password, email, zipcode} = this.props.user
 
