@@ -54,6 +54,13 @@ export default class SwipeCardContainer extends Component {
         .then(res=>res.json())
       }
 
+
+      // getDog = () =>{
+      //   const dogArray = this.state.dogs
+      //   const index = this.state.selectedDog
+      //   return dogArray[index]
+      // }
+
     render() {
 
         return (
@@ -62,7 +69,7 @@ export default class SwipeCardContainer extends Component {
                 <h1 className='small-spacer'></h1>
                 {this.state.dogs.length>0?
             <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal">
-               
+                {document.body.style = 'background: white;'}
               <SwipeCardFront key="front" dog={this.state.dogs[this.state.selectedDog]} onClick={this.handleClick} onNext={this.handleNext} onFavorite={this.handleFavorite}>
               </SwipeCardFront>
 
