@@ -12,8 +12,6 @@ import Profile from './components/ProfileComponents/Profile.js'
 
 
 
-
-const user = {username: 'Hanna', password:'pig', email: 'content', zipcode:'32934'}
 function App() {
   return (
     <div className="App">

@@ -43,10 +43,10 @@ export default class DogList extends Component {
 
 
     render() {
+        {document.body.style = 'background: white;'}
         return(
 
             <React.Fragment>
-            {document.body.style = 'background: white;'}
             <Navbar />
             <div className='list-top-image'>
                 <header className='small-spacer'></header>

@@ -80,7 +80,7 @@ export default class SwipeCardContainer extends Component {
       // }
 
     render() {
-
+      document.body.style = 'background: whitesmoke;';
         return (
             <div>
                 <Navbar />

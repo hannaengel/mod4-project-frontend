@@ -13,7 +13,8 @@ export default class Profile extends Component {
                 username: '',
                 email: '',
                 zipcode: '',
-                user_id: null
+                user_id: null,
+                message_template: ''
               }
             }
             this.getProfile()
@@ -35,11 +36,14 @@ export default class Profile extends Component {
               username: json.user.username,
               email: json.user.email_address,
               zipcode: json.user.zipcode,
-              user_id: json.user.id
+              user_id: json.user.id,
+              message_template: json.user.message_template
             }
           });
         })
       }
+
+    
 
     handleSelect = event => {
         const profileBtn = document.getElementById('profile')
@@ -58,10 +62,10 @@ export default class Profile extends Component {
 
      }
 
-     editEmail = email => {
+     editEmail = message_template => {
          this.setState(prevState => ({
              profileInfo: {...prevState.profileInfo,
-                 email
+                 message_template
              }
          }), ()=> console.log(this.state.profileInfo))
      }
