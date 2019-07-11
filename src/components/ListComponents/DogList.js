@@ -17,13 +17,31 @@ export default class DogList extends Component {
     }
 
     fetchDogs = () =>{
-        fetch('http://localhost:3000/api/v1/pets')
+        {/*fetch('http://localhost:3000/api/v1/pets')
             .then(res=>res.json())
             .then(data => {
             console.log(data)
             this.setState({dogs: data})
         })
+        */}
+
+        let token = localStorage.getItem("jwt")
+        fetch('http://localhost:3000/api/v1/users/displayPets', {
+          headers: {
+            'Authorization': 'Bearer ' + token
+          }
+        })
+        .then(res=>res.json())
+        .then(json=> {
+          console.log(json)
+          this.setState({
+            dogs: json
+          })
+        })
+
     }
+
+
     render() {
         {document.body.style = 'background: white;'}
         return(
@@ -51,7 +69,4 @@ export default class DogList extends Component {
             </React.Fragment>
         )
     }
-
-
-   
 }

@@ -13,10 +13,33 @@ export default class Profile extends Component {
                 username: '',
                 email: '',
                 zipcode: '',
-                password: ''}
+                user_id: null
+              }
             }
+            this.getProfile()
         };
 
+      getProfile = () => {
+        let token = localStorage.getItem("jwt")
+        fetch('http://localhost:3000/api/v1/profile', {
+          headers: {
+            'Authorization': 'Bearer ' + token
+          }
+        })
+        .then(res=>res.json())
+        .then(json=> {
+          console.log(json)
+          this.setState({
+            profileInfo: {
+              ...this.state.profileInfo,
+              username: json.user.username,
+              email: json.user.email_address,
+              zipcode: json.user.zipcode,
+              user_id: json.user.id
+            }
+          });
+        })
+      }
 
     
 
@@ -34,7 +57,7 @@ export default class Profile extends Component {
         this.setState(prevState => ({
             selected: event.target.name
         }), ()=> console.log('hello',  this.state.selected))
-       
+
      }
 
      editEmail = email => {
@@ -51,7 +74,7 @@ export default class Profile extends Component {
 
     render() {
         {document.body.style = 'background: white;'}
-        return( 
+        return(
             <section>
              <Navbar />
             <div class="ui celled grid">
@@ -59,25 +82,25 @@ export default class Profile extends Component {
                 <div class='profile-header'>
                     <h2 class="ui header">
                         <i class="user icon"></i>
-                        User 
+                        {this.state.profileInfo.username}
                     </h2>
-                </div> 
+                </div>
                 </div>
             <div class="row">
                 <div class="ui fluid three item top attached tabular menu" color='teal'>
                     <a class="active item" onClick={this.handleSelect} name='profile' id='profile'>
-                        Profile 
+                        Profile
                     </a>
                     <a class="item" onClick={this.handleSelect} name='email' id='email'>
                          <i class="envelope outline icon"></i> Email
                     </a>
-                    
+
                  </div>
                 </div>
             </div>
             {this.state.selected==='email'?
             <EmailDisplay user={this.props.user} name={this.state.username} onClick={this.editEmail}/>:
-            <ProfileDisplay user={this.props.user} onClick={this.editProfile}/>}
+            <ProfileDisplay user={this.state.profileInfo} onClick={this.editProfile}/>}
         </section>
         )
     }

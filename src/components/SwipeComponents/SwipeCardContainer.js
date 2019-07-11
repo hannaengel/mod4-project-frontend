@@ -11,11 +11,28 @@ export default class SwipeCardContainer extends Component {
     constructor() {
         super();
           this.state = {
-          user_id: 22,
+          user_id: null,
           isFlipped: false,
           selectedDog: 0,
           dogs: []
         };
+        this.getProfile()
+      }
+
+      getProfile = () => {
+        let token = localStorage.getItem("jwt")
+        fetch('http://localhost:3000/api/v1/profile', {
+          headers: {
+            'Authorization': 'Bearer ' + token
+          }
+        })
+        .then(res=>res.json())
+        .then(json=> {
+          console.log(json)
+          this.setState({
+            user_id: json.user.id
+          })
+        })
       }
 
 
@@ -23,11 +40,12 @@ export default class SwipeCardContainer extends Component {
         this.fetchDogs()
       }
 
+
+    //customize filtered dogs here and add this method as onclick for the buttons
     fetchDogs = () =>{
         fetch('http://localhost:3000/api/v1/pets')
             .then(res=>res.json())
             .then(data => {
-            console.log(data)
             this.setState({dogs: data})
         })
     }
@@ -54,6 +72,13 @@ export default class SwipeCardContainer extends Component {
         .then(res=>res.json())
       }
 
+
+      // getDog = () =>{
+      //   const dogArray = this.state.dogs
+      //   const index = this.state.selectedDog
+      //   return dogArray[index]
+      // }
+
     render() {
       document.body.style = 'background: whitesmoke;';
         return (
@@ -62,7 +87,7 @@ export default class SwipeCardContainer extends Component {
                 <h1 className='small-spacer'></h1>
                 {this.state.dogs.length>0?
             <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal">
-               
+                {document.body.style = 'background: white;'}
               <SwipeCardFront key="front" dog={this.state.dogs[this.state.selectedDog]} onClick={this.handleClick} onNext={this.handleNext} onFavorite={this.handleFavorite}>
               </SwipeCardFront>
 
