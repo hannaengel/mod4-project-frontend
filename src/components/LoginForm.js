@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 import { Form } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
@@ -40,8 +39,8 @@ export default class LoginForm extends Component {
       })
       .then(res=>res.json())
       .then(json=> {
-        console.log('profile:', json)
         this.setState({user: json.user})
+        console.log('user:', json.user)
         localStorage.setItem("user_id", json.user.id)
       })
     }
