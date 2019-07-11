@@ -13,10 +13,13 @@ export default class SwipeCardContainer extends Component {
           isFlipped: false,
           selectedDog: 0,
           dogs: [],
+          dog_id: null,
           is_favorite: false
         };
         this.getProfile()
+        this.fetchDogs()
       }
+
 
       getProfile = () => {
         let token = localStorage.getItem("jwt")
@@ -35,26 +38,37 @@ export default class SwipeCardContainer extends Component {
       }
 
 
-      componentDidMount(){
-        this.fetchDogs()
-      }
-
-
     //customize filtered dogs here and add this method as onclick for the buttons
     fetchDogs = () =>{
-        fetch('http://localhost:3000/api/v1/pets')
+      console.log('in fetch dogs')
+        fetch('http://localhost:3000/api/v1/pets', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        })
             .then(res=>res.json())
             .then(data => {
             this.setState({dogs: data})
         })
+            .then(()=> this.getDogId())
     }
+
+    getDogId = () => {
+      let selectedDog = this.state.dogs[this.state.selectedDog]
+      console.log(selectedDog)
+      this.setState({dog_id: selectedDog.id})
+    }
+
 
       handleClick = e => {
         e.preventDefault();
         this.setState(prevState => ({ isFlipped: !prevState.isFlipped }));
       }
       handleNext = () => {
-        this.setState(prevState => ({ selectedDog: prevState.selectedDog + 1}), () => console.log(this.state.selectedDog));
+        this.setState(prevState => ({ selectedDog: prevState.selectedDog + 1}));
+        this.getDogId()
       }
 
       handleFavorite = (dog) => {
@@ -75,15 +89,18 @@ export default class SwipeCardContainer extends Component {
 
     render() {
       {document.body.style = 'background: white;'}
+
         return (
             <div>
                 <Navbar />
                 <h1 className='small-spacer'></h1>
+                
                { this.state.dogs.length>0?
-               <DogDisplay dog={this.state.dogs[this.state.selectedDog]} onClick={this.handleClick} onNext={this.handleNext} onFavorite={this.handleFavorite}/>: null}
+               <DogDisplay favorite={this.state.is_favorite} dog={this.state.dogs[this.state.selectedDog]} onClick={this.handleClick} onNext={this.handleNext} onFavorite={this.handleFavorite}/>: null}
                 
                <DogFilter />
           
+
             </div>
         )
     }
