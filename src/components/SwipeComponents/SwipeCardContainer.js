@@ -14,10 +14,14 @@ export default class SwipeCardContainer extends Component {
           user_id: null,
           isFlipped: false,
           selectedDog: 0,
-          dogs: []
+          dogs: [],
+          dog_id: null,
+          is_favorite: false
         };
         this.getProfile()
+        this.fetchDogs()
       }
+
 
       getProfile = () => {
         let token = localStorage.getItem("jwt")
@@ -36,31 +40,43 @@ export default class SwipeCardContainer extends Component {
       }
 
 
-      componentDidMount(){
-        this.fetchDogs()
-      }
-
-
     //customize filtered dogs here and add this method as onclick for the buttons
     fetchDogs = () =>{
-        fetch('http://localhost:3000/api/v1/pets')
+      console.log('in fetch dogs')
+        fetch('http://localhost:3000/api/v1/pets', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        })
             .then(res=>res.json())
             .then(data => {
             this.setState({dogs: data})
         })
+            .then(()=> this.getDogId())
     }
+
+    getDogId = () => {
+      let selectedDog = this.state.dogs[this.state.selectedDog]
+      console.log(selectedDog)
+      this.setState({dog_id: selectedDog.id})
+    }
+
 
       handleClick = e => {
         e.preventDefault();
         this.setState(prevState => ({ isFlipped: !prevState.isFlipped }));
       }
       handleNext = () => {
-        this.setState(prevState => ({ selectedDog: prevState.selectedDog + 1}), () => console.log(this.state.selectedDog));
+        this.setState(prevState => ({ selectedDog: prevState.selectedDog + 1}));
+        this.getDogId()
       }
 
       handleFavorite = (dog) => {
+        console.log('in handle favorite')
+        console.log(dog.id)
         let user_id = this.state.user_id
-        console.log('adsfasdfds')
         return fetch(`http://localhost:3000/api/v1/user_pets`, {
           method: 'POST',
           headers: {
@@ -70,17 +86,12 @@ export default class SwipeCardContainer extends Component {
           body: JSON.stringify({pet_id: dog.id, user_id: user_id})
         })
         .then(res=>res.json())
+        .then(this.setState({is_favorite: true}))
       }
 
 
-      // getDog = () =>{
-      //   const dogArray = this.state.dogs
-      //   const index = this.state.selectedDog
-      //   return dogArray[index]
-      // }
-
     render() {
-      document.body.style = 'background: whitesmoke;';
+
         return (
             <div>
                 <Navbar />
@@ -88,7 +99,7 @@ export default class SwipeCardContainer extends Component {
                 {this.state.dogs.length>0?
             <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal">
                 {document.body.style = 'background: white;'}
-              <SwipeCardFront key="front" dog={this.state.dogs[this.state.selectedDog]} onClick={this.handleClick} onNext={this.handleNext} onFavorite={this.handleFavorite}>
+              <SwipeCardFront favorite={this.state.is_favorite} key="front" dog={this.state.dogs[this.state.selectedDog]} onClick={this.handleClick} onNext={this.handleNext} onFavorite={this.handleFavorite}>
               </SwipeCardFront>
 
               <SwipeCardBack key="back" dog={this.state.dogs[this.state.selectedDog]} onClick={this.handleClick}>

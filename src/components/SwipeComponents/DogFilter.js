@@ -5,26 +5,24 @@ export default class DogFilter extends Component {
   constructor(){
     super()
     this.state = {
-      desiredSex: ['all-sexes'],
-      desiredAge: ['all-ages']
+      desiredSex: 'all-sexes',
+      desiredAge: 'all-ages'
     }
   }
 
   componentDidMount(){
-    if (this.state.desiredSex[0] === 'all-sexes') {
+    if (this.state.desiredSex === 'all-sexes') {
       let allBtn = document.getElementById("all-ages")
       allBtn.classList.add("active")
     }
-    if (this.state.desiredAge[0] === 'all-ages') {
+    if (this.state.desiredAge === 'all-ages') {
       let allBtn = document.getElementById("all-sexes")
       allBtn.classList.add("active")
     }
-    this.state.desiredAge.forEach((age) => {
-      this.activateBtn(age)
-    })
-    this.state.desiredSex.forEach((sex) => {
-      this.activateBtn(sex)
-    })
+
+      this.activateBtn(this.state.desiredAge)
+
+      this.activateBtn(this.state.desiredSex)
 
     //add code to fetch dogs from backend here
 
@@ -33,31 +31,25 @@ export default class DogFilter extends Component {
   handleSexClick = (ev) => {
     ev.persist()
     let btnName = ev.currentTarget.attributes[0].value
+    let removeBtnName = this.state.desiredSex
     let selectedBtn = document.getElementById(btnName)
-    let allBtn = document.getElementById("all-sexes")
-    if (this.state.desiredSex[0] === 'all-sexes') {
-      allBtn.classList.remove("active")
-      const {desiredSex, ...state} = this.state
-      this.setState({state})
-      this.setState({desiredSex: [btnName]})
+    let removeBtn = document.getElementById(removeBtnName)
+
+      removeBtn.classList.remove("active")
+      this.setState({desiredSex: btnName})
       this.activateBtn(btnName)
-    }
   }
 
   handleAgeClick = (ev) => {
     ev.persist()
     let btnName = ev.currentTarget.attributes[0].value
+    let removeBtnName = this.state.desiredAge
     let selectedBtn = document.getElementById(btnName)
-    let allBtn = document.getElementById("all-ages")
-    if (this.state.desiredAge[0] === 'all-ages') {
-      console.log(allBtn)
-      console.log('in if')
-      allBtn.classList.remove("active")
-      const {desiredAge, ...state} = this.state
-      this.setState({state})
-      this.setState({desiredAge: [btnName]})
+    let removeBtn = document.getElementById(removeBtnName)
+
+      removeBtn.classList.remove("active")
+      this.setState({desiredAge: btnName})
       this.activateBtn(btnName)
-    }
   }
 
   activateBtn = (btnName) => {
