@@ -2,18 +2,41 @@ import React, { Component } from 'react'
 //import other files here
 
 export default class SwipeCardFront extends Component {
+
+    constructor(props){
+      super(props)
+      this.state = {
+        isFavorite: this.props.favorite
+      }
+      this.checkFavorite()
+    }
+
+    checkFavorite = () => {
+      console.log('in lower favorite')
+      console.log(this.state.isFavorite)
+      let favoriteIcon = document.getElementById("favoriteIcon")
+      if (this.state.isFavorite === true) {
+        console.log('in if')
+        favoriteIcon.classList.add("active")
+      }
+    }
+
     handleClick = e => {
         this.props.onClick(e)
     }
 
     handleNext = () => {
         this.props.onNext()
+        this.checkFavorite()
     }
     handleFavorite = () => {
         this.props.onFavorite(this.props.dog)
+        this.setState({
+          isFavorite: true
+        }, () => this.checkFavorite())
     }
     render() {
-        return( 
+        return(
             <div>
                   <div class="ui centered card" >
                     <div class="content">
@@ -29,8 +52,8 @@ export default class SwipeCardFront extends Component {
                     </div>
 
                     <div class="extra content">
-                        <span class="left floated like" onClick={this.handleFavorite}>
-                        <i class="like icon"></i>
+                        <span  class="left floated like" onClick={this.handleFavorite}>
+                        <i id="favoriteIcon" class="like icon"></i>
                         </span>
                         <span class="center floated question">
                         <i onClick={this.handleClick} class="question circle outline icon"></i>
