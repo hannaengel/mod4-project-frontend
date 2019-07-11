@@ -33,6 +33,7 @@ export default class CreateUserFOrm extends Component {
         }
         fetch(URL, headers)
             .then(res=>res.json())
+            window.location.replace("http://localhost:3001/profile");
     }
 
     handleSubmit = ()=>{
@@ -81,7 +82,7 @@ export default class CreateUserFOrm extends Component {
                 </Grid>
                 </article>
                 </div>
-                </container>     
+                </container>
             </div>
         )
     }

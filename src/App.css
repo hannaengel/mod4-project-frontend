@@ -45,18 +45,34 @@
   float: none;
   position: relative;
   color: palevioletred;
-  
+
 }
 .login-section{
   margin-top: 20px;
   padding: 30px;
   margin-left: 40px;
   display: block;
- 
+
+}
+
+.dog-form-wrapper{
+  margin-top: 80px;
+}
+
+.sex-icons {
+  margin-top: 10px;
+}
+
+.ui.attached{
+  text-align: center !important;
+}
+
+.icon {
+  margin: 0px !important;
 }
 
 .login-div{
- 
+
   border-radius: 20px;
   padding: 100px 80px 70px 100px;
   background-color: whitesmoke;
@@ -64,11 +80,11 @@
   position: relative; left: 50%;
   transform: translateX(-50%);
   width: 70%
-  
+
 }
 
-body { 
-  background: url('./images/background.jpg') no-repeat center center fixed; 
+body {
+  background: url('./images/background.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -88,4 +104,41 @@ body {
   margin: 5%;
     padding: 0;
     border: 0;
+}
+
+.list-top-image{
+  background-image: url("./images/list..png");
+  padding: 10px;
+  
+}
+
+.profile-header{
+
+  padding: 8%;
+  text-align: left;
+
+}
+
+.swipe-image {
+  height: 350px !important;
+  margin-left:auto;
+  margin-right:auto;
+  max-width: 300px;
+}
+
+.cover {
+background-image: url("./images/wall.png") !important;
+}
+
+.heart{
+  color: pink !important;
+}
+
+.bordered{
+  background-color: whitesmoke;
+  border: #282c34;
+  border-radius: 5px;
+  
+  border-style: solid;
+  padding: 7%;
 }
