@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Form } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
+
 export default class LoginForm extends Component {
 
     state = {
@@ -117,9 +118,11 @@ export default class LoginForm extends Component {
                      </Form.Field>
 
                      <Form.Field>
+
                       {/*<Link to ="/browse"> */}
                         <input type="submit" class="large ui button" value="Log In" />
                      {/*</Link> */}
+
                      </Form.Field>
 
 
