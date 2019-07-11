@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import { Form } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 export default class LoginForm extends Component {
 
@@ -41,6 +42,7 @@ export default class LoginForm extends Component {
       .then(json=> {
         console.log('profile:', json)
         this.setState({user: json.user})
+        localStorage.setItem("user_id", json.user.id)
       })
     }
 
@@ -53,7 +55,7 @@ export default class LoginForm extends Component {
     }
 
     login = (ev) => {
-        console.log('log in')
+        console.log('in login')
         ev.preventDefault()
         const username = this.username.current.value
         const password = this.password.current.value
@@ -80,7 +82,7 @@ export default class LoginForm extends Component {
     }
 
     saveToken = (token) =>{
-        console.log(token)
+        console.log('token')
         localStorage.setItem('jwt', token)
     }
 
@@ -116,7 +118,9 @@ export default class LoginForm extends Component {
                      </Form.Field>
 
                      <Form.Field>
-                     <input type="submit" class="large ui button" value="Log In" />
+                      {/*<Link to ="/browse"> */}
+                        <input type="submit" class="large ui button" value="Log In" />
+                     {/*</Link> */}
                      </Form.Field>
 
 
