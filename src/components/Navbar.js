@@ -6,6 +6,33 @@ import { Link } from 'react-router-dom'
 export default class Navbar extends Component {
 
 //state here
+
+    constructor() {
+        super();
+          this.state = {
+          user_id: null,
+          username: ''
+        };
+        this.getProfile()
+      }
+
+    getProfile = () => {
+      let token = localStorage.getItem("jwt")
+      fetch('http://localhost:3000/api/v1/profile', {
+        headers: {
+          'Authorization': 'Bearer ' + token
+        }
+      })
+      .then(res=>res.json())
+      .then(json=> {
+        console.log(json)
+        this.setState({
+          user_id: json.user.id,
+          username: json.user.username
+        })
+      })
+    }
+
     render() {
         return(
             <div>
@@ -23,6 +50,9 @@ export default class Navbar extends Component {
                 Favorites
                 </a>
                 <div class="right menu">
+                <div class="item">
+                  {this.state.username}
+                </div>
                 <a href="http://localhost:3001/profile" class="item">
                 Profile
                 </a>
