@@ -123,11 +123,22 @@ body {
   height: 350px !important;
   margin-left:auto;
   margin-right:auto;
+  max-width: 300px;
 }
 
 .cover {
+background-image: url("./images/wall.png") !important;
+}
 
+.heart{
+  color: pink !important;
+}
 
-background-image: url("./images/wall.png");
-
+.bordered{
+  background-color: whitesmoke;
+  border: #282c34;
+  border-radius: 5px;
+  
+  border-style: solid;
+  padding: 7%;
 }

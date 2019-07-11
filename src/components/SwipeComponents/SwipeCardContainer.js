@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import ReactCardFlip from 'react-card-flip';
-import SwipeCardFront from './SwipeCardFront';
-import SwipeCardBack from './SwipeCardBack';
 import DogFilter from './DogFilter';
 import Navbar from '../Navbar.js';
+import DogDisplay from './DogDisplay';
 
 
 export default class SwipeCardContainer extends Component {
@@ -14,7 +12,8 @@ export default class SwipeCardContainer extends Component {
           user_id: null,
           isFlipped: false,
           selectedDog: 0,
-          dogs: []
+          dogs: [],
+          is_favorite: false
         };
         this.getProfile()
       }
@@ -59,8 +58,9 @@ export default class SwipeCardContainer extends Component {
       }
 
       handleFavorite = (dog) => {
+        console.log('in handle favorite')
+        console.log(dog.id)
         let user_id = this.state.user_id
-        console.log('adsfasdfds')
         return fetch(`http://localhost:3000/api/v1/user_pets`, {
           method: 'POST',
           headers: {
@@ -70,33 +70,20 @@ export default class SwipeCardContainer extends Component {
           body: JSON.stringify({pet_id: dog.id, user_id: user_id})
         })
         .then(res=>res.json())
+        .then(this.setState({is_favorite: true}))
       }
 
-
-      // getDog = () =>{
-      //   const dogArray = this.state.dogs
-      //   const index = this.state.selectedDog
-      //   return dogArray[index]
-      // }
-
     render() {
-      
+      {document.body.style = 'background: white;'}
         return (
-            <div className='cover'>
+            <div>
                 <Navbar />
-               
                 <h1 className='small-spacer'></h1>
-                {this.state.dogs.length>0?
-               
-            <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal">
-                {document.body.style = 'background: white;'}
-              <SwipeCardFront key="front" dog={this.state.dogs[this.state.selectedDog]} onClick={this.handleClick} onNext={this.handleNext} onFavorite={this.handleFavorite}>
-              </SwipeCardFront>
-
-              <SwipeCardBack key="back" dog={this.state.dogs[this.state.selectedDog]} onClick={this.handleClick}>
-              </SwipeCardBack>
-            </ReactCardFlip>: null}
-            <DogFilter />
+               { this.state.dogs.length>0?
+               <DogDisplay dog={this.state.dogs[this.state.selectedDog]} onClick={this.handleClick} onNext={this.handleNext} onFavorite={this.handleFavorite}/>: null}
+                
+               <DogFilter />
+          
             </div>
         )
     }
