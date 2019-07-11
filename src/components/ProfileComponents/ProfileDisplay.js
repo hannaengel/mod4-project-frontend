@@ -3,8 +3,8 @@ import { Header, Button } from 'semantic-ui-react'
 import EditForm from './EditForm'
 
 export default class ProfileDisplay extends Component {
-   constructor() {
-       super();
+   constructor(props) {
+       super(props);
        this.state = {
            isToggleOn: false
        };
@@ -30,7 +30,7 @@ export default class ProfileDisplay extends Component {
                     <Header as='h3'>Zipcode: {this.props.user.zipcode} </Header>
                     <button onClick={this.handleClick} class="ui pink button">
                     <i onClick={this.handleClick} class="edit outline icon"></i>Edit</button>
-                    </div>: <div><EditForm user={this.props.user} onClick={this.props.onClick}/></div>
+                    </div>: <div><EditForm updateProfile={this.props.updateProfile} user={this.props.user} onClick={this.props.onClick}/></div>
 
         )
     }

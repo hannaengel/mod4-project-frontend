@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Form } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
+import { Route, Redirect } from 'react-router'
+
 
 export default class LoginForm extends Component {
 
@@ -74,6 +76,7 @@ export default class LoginForm extends Component {
                 if (json && json.jwt) {
                   this.saveToken(json.jwt)
                   this.getProfile()
+
                 }else{
                     console.log('nope!')
                 }
@@ -107,12 +110,12 @@ export default class LoginForm extends Component {
                     <Form.Field onChange={this.handleChange}>
 
                      <label>Username</label>
-                     <input name='username' type="text" placeholder='username' ref={this.username} />
+                     <input name='username' type="text" placeholder='username' ref={this.username} required />
                      </Form.Field>
 
                      <Form.Field  onChange={this.handleChange}>
                      <label>Password</label>
-                     <input name='password' type="password" placeholder='password' ref={this.password} />
+                     <input name='password' type="password" placeholder='password' ref={this.password} required />
 
                      </Form.Field>
 
