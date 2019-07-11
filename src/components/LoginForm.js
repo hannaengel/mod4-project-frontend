@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { Form } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 
 export default class LoginForm extends Component {
 
     state = {
         username: '',
+        loggedIn: false
     };
 
     constructor() {
@@ -27,6 +28,7 @@ export default class LoginForm extends Component {
     logout() {
       this.clearToken()
       this.setState({username: ''})
+      
       {/* Go To login path here */}
       return false
     }
@@ -75,6 +77,10 @@ export default class LoginForm extends Component {
                 if (json && json.jwt) {
                   this.saveToken(json.jwt)
                   this.getProfile()
+                  this.setState(prevState => ({
+                    loggedIn: true
+                  }), ()=> console.log(this.state.loggedIn));
+                  window.location.replace("http://localhost:3001/profile");
                 }else{
                     console.log('nope!')
                 }
@@ -96,14 +102,18 @@ export default class LoginForm extends Component {
 
 
     render() {
-        return(
+      
+       return(
+        // !this.state.loggedIn?
+        //  <Redirect push to="/profile"/> :
+       
             <div>
                 <header className='spacer'> </header>
                <div className='login-section'>
                 <div className='login-div'>
                 <article className ='login'>
                 <h2>Sign in</h2>
-                <p>Not a member? <a color='red'> Sign Up</a></p>
+                <p>Not a member? <Link to="/users/new">Sign Up</Link></p>
                 <Form onSubmit={this.login}>
                     <Form.Field onChange={this.handleChange}>
 
@@ -120,18 +130,15 @@ export default class LoginForm extends Component {
                      <Form.Field>
 
                       {/*<Link to ="/browse"> */}
-                        <input type="submit" class="large ui button" value="Log In" />
+                        <input type="submit" class="large ui button" value="Log In" onClick={this.login}/>
                      {/*</Link> */}
 
                      </Form.Field>
-
-
-
+ 
                 </Form>
                 </article>
                 </div>
               </div>
-
             </div>
         )
     }
