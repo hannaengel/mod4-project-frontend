@@ -18,6 +18,8 @@ export default class Profile extends Component {
         };
 
 
+    
+
     handleSelect = event => {
         const profileBtn = document.getElementById('profile')
         const emailBtn = document.getElementById('email')
