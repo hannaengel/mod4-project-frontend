@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import ReactCardFlip from 'react-card-flip';
+import SwipeCardFront from './SwipeCardFront';
 import DogFilter from './DogFilter';
 import Navbar from '../Navbar.js';
 import DogDisplay from './DogDisplay';
@@ -37,7 +39,6 @@ export default class SwipeCardContainer extends Component {
         })
       }
 
-
     //customize filtered dogs here and add this method as onclick for the buttons
     fetchDogs = () =>{
       console.log('in fetch dogs')
@@ -50,17 +51,20 @@ export default class SwipeCardContainer extends Component {
         })
             .then(res=>res.json())
             .then(data => {
-            this.setState({dogs: data})
+            this.setState({dogs: data}, () => this.getDogId())
         })
-            .then(()=> this.getDogId())
+            {/* .then(()=> this.getDogId())*/}
     }
 
     getDogId = () => {
+      console.log('in get dog id')
       let selectedDog = this.state.dogs[this.state.selectedDog]
-      console.log(selectedDog)
       this.setState({dog_id: selectedDog.id})
     }
 
+    setDogs = (dogList) => {
+      this.setState({dogs: dogList}, () => console.log(this.state.dogs))
+    }
 
       handleClick = e => {
         e.preventDefault();
@@ -87,21 +91,21 @@ export default class SwipeCardContainer extends Component {
         .then(this.setState({is_favorite: true}))
       }
 
-    render() {
-      {document.body.style = 'background: white;'}
 
-        return (
-            <div>
-                <Navbar />
-                <h1 className='small-spacer'></h1>
-                
-               { this.state.dogs.length>0?
-               <DogDisplay favorite={this.state.is_favorite} dog={this.state.dogs[this.state.selectedDog]} onClick={this.handleClick} onNext={this.handleNext} onFavorite={this.handleFavorite}/>: null}
-                
-               <DogFilter />
-          
+      render() {
+        {document.body.style = 'background: white;'}
 
-            </div>
-        )
-    }
+          return (
+              <div>
+                  <Navbar />
+                  <h1 className='small-spacer'></h1>
+
+                 { this.state.dogs.length>0?
+                 <DogDisplay favorite={this.state.is_favorite} dog={this.state.dogs[this.state.selectedDog]} onClick={this.handleClick} onNext={this.handleNext} onFavorite={this.handleFavorite}/>: null}
+
+                 <DogFilter setDogs={this.setDogs} />
+
+              </div>
+          )
+      }
 }
