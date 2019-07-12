@@ -36,7 +36,6 @@ export default class LoginForm extends Component {
       .then(res=>res.json())
       .then(json=> {
         this.setState({user: json.user})
-        console.log('user:', json.user)
         this.props.onLogin(json.user);
         // localStorage.setItem("user_id", json.user.id)
       })
@@ -47,11 +46,11 @@ export default class LoginForm extends Component {
 
         this.setState({
             [name]: value,
-        }, ()=> console.log(this.state));
+        });
     }
 
     login = (ev) => {
-        console.log('in login')
+
         ev.preventDefault()
         const username = this.username.current.value
         const password = this.password.current.value
@@ -67,7 +66,6 @@ export default class LoginForm extends Component {
         fetch(URL, headers)
             .then(res=>res.json())
             .then(json => {
-                debugger
                 this.props.onLogin(json.user);
                 console.log('login:', json)
                 if (json && json.jwt) {
@@ -106,7 +104,7 @@ export default class LoginForm extends Component {
         // !this.state.loggedIn?
         //  <Redirect push to="/profile"/> :
 
-            <div>
+            <div className='body'>
                 <header className='spacer'> </header>
                <div className='login-section'>
                 <div className='login-div'>

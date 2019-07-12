@@ -121,10 +121,10 @@ export default class SwipeCardContainer extends Component {
 
 
       render() {
-        {document.body.style = 'background: white;'}
+      
 
           return (
-              <div>
+              <div className='cover'>
                   <Navbar />
                   <h1 className='small-spacer'></h1>
 

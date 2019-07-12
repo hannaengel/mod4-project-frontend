@@ -123,7 +123,11 @@ body {
 
 .list-top-image{
   background-image: url("./images/list..png");
-  padding: 10px;
+  -webkit-background-size: 100% auto;
+  -moz-background-size: 100% auto;
+  -ms-background-size: 100% auto;
+  -o-background-size: 100% auto;
+  background-size: 100% auto;
 
 }
 
@@ -143,7 +147,13 @@ body {
 }
 
 .cover {
-background-image: url("./images/wall.png") !important;
+  background-image: url("./images/swipe.jpg") !important;
+  -webkit-background-size: 100% auto;
+  -moz-background-size: 100% auto;
+  -ms-background-size: 100% auto;
+  -o-background-size: 100% auto;
+  background-size: 100% auto;
+
 }
 
 .heart{
@@ -162,4 +172,18 @@ background-image: url("./images/wall.png") !important;
 
 .arrow{
   color: #49b8e6 !important;
+}
+/* 
+  border-style: solid;
+  padding: 7%;
+} */
+
+.highlight{
+  background-color: whitesmoke;
+  padding: 20px !important;
+  border-radius: 70px;
+}
+
+.mint{
+  background-color: #84d9be;
 }

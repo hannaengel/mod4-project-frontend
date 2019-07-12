@@ -48,7 +48,7 @@ export default class CreateUserFOrm extends Component {
     render() {
 
         return(
-            <div>
+            <div className='body'>
                 <header className='spacer'> </header>
                <container className='login-section'>
                 <div className='login-div'>

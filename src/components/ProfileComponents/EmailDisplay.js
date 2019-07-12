@@ -21,7 +21,7 @@ export default class EmailDisplay extends Component {
         return( 
             this.state.isToggleOn===false?
             <div>
-
+ 
                 <h1 class="ui dividing header">Email Template</h1>
                
                 <div className='login-section'>

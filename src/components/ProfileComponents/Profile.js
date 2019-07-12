@@ -79,16 +79,16 @@ export default class Profile extends Component {
             <section>
              <Navbar />
             <div class="ui celled grid">
-                <div class="row">
+                <div class="row list-top-image">
                 <div class='profile-header'>
-                    <h2 class="ui header">
+                    <h2 class="ui header highlight">
                         <i class="user icon"></i>
                         {this.state.profileInfo.username}
                     </h2>
                 </div>
                 </div>
-            <div class="row">
-                <div class="ui fluid three item top attached tabular menu" color='teal'>
+            <div class="row mint">
+                <div class="ui fluid three item top attached tabular menu">
                     <a class="active item" onClick={this.handleSelect} name='profile' id='profile'>
                         Profile
                     </a>

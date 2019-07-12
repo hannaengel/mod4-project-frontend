@@ -79,12 +79,11 @@ export default class DogList extends Component {
         return(
 
             <React.Fragment>
-            
-            {document.body.style ='background: white;'}
+
             <Navbar />
             <div className='list-top-image' >
               
-                <div>
+                <div className='cover'>
                 <h1 class="ui center aligned icon header">
                     <i className=" paw icon"></i>
                      Favorites
