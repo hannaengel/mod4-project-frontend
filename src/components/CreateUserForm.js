@@ -80,7 +80,7 @@ export default class CreateUserFOrm extends Component {
                      </Form.Field>
 
                      <Form.Field>
-                     <Button onClick={this.handleSubmit}>Create New User</Button>
+                     <Button onClick={this.handleSubmit}>Create Profile</Button>
                      </Form.Field>
                      <Form.Field>
                      <Button onClick={this.backToLogin}>Return to Login</Button>

@@ -117,7 +117,7 @@ export default class LoginForm extends Component {
 
                      <Form.Field  onChange={this.handleChange}>
                      <label>Password</label>
-                     <input name='password' type="password" placeholder='password' ref={this.password} required />
+                     <input id='loginpassword' name='password' type="password" placeholder='password' ref={this.password} required />
 
                      </Form.Field>
 
