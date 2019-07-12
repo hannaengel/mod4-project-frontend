@@ -85,9 +85,9 @@
 }
 
 .ui.card {
-  height: 42em;
+  height: 39em;
   background-color: #DDF0FF;
-  border: 2px solid #223127;
+  border: 3px solid #223127;
 }
 
 .login-div{
@@ -123,6 +123,11 @@ body {
   background-size: cover;
 }
 
+
+#puppy-image{
+  border-radius: 10px;
+}
+
 .list-page-background{
   background-color: black;
 }
@@ -153,7 +158,7 @@ body {
 .profile-header{
 
   padding: 8%;
-  text-align: left;
+  text-align: center;
 }
 
 .swipe-image {
@@ -165,7 +170,7 @@ body {
   border: 2px solid black;
 }
 
-.cover {
+/* .cover {
   background-image: url("./images/swipe.jpg") !important;
   -webkit-background-size: 100% auto;
   -moz-background-size: 100% auto;
@@ -173,12 +178,26 @@ body {
   -o-background-size: 100% auto;
   background-size: 100% auto;
 
-}
+} */
 
 .heart{
   color: red !important;
-  transition: 
+  transition:
 }
+
+.huge.like.icon:hover{
+  color: red;
+}
+
+.huge.like.icon{
+  color: white;
+}
+
+  #age-div{
+    padding-top: 15px;
+    font-family: 'Actor' !important;
+    font-size: 1.5em;
+  }
 
 .bordered{
   background-color: whitesmoke;
@@ -192,7 +211,7 @@ body {
 .arrow{
   color: #49b8e6 !important;
 }
-/* 
+/*
   border-style: solid;
   padding: 7%;
 } */
