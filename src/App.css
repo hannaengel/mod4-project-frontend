@@ -94,6 +94,7 @@
 
 .login-div input[type="submit"]{
   width: 20% !important;
+  text-align: center !important;
 }
 
 body {

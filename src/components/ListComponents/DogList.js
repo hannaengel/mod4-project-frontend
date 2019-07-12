@@ -48,14 +48,19 @@ export default class DogList extends Component {
       let dogId = dog.id
       let userId = this.state.user_id
 
-      // fetch(`http://localhost:3000/api/v1/profile`, {
-      //   method: "DELETE",
-      //   headers: {
-      //     Accept: "application/json",
-      //     "Content-Type": "application/json"
-      //   },
-      //   body: JSON.stringify({ image_id: imageID, content: comment.content })
-      // })
+      let token = localStorage.getItem("jwt")
+      return fetch(`http://localhost:3000/api/v1/removePet`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({dogId: dogId, userId: userId})
+      })
+      .then(res=>res.json())
+      .then(json => {
+        console.log('removed dog from favorite')
+        this.fetchDogs()
+      })
 
     }
 
