@@ -98,23 +98,24 @@ export default class DogList extends Component {
         return(
 
             <React.Fragment>
-
-            <Navbar />
-            <div className='list-top-image' >
               
-                <div className='cover'>
-                <h1 class="ui center aligned icon header">
-                    <i className=" paw icon"></i>
+            <Navbar />
+            <div>
+                <h1 className='mini-spacer'></h1>
+                <div  className='white'>
+                <h1 class="ui center aligned icon header paw">
+                    <i className=" paw icon "></i>
                      Favorites
                 </h1>
                 </div>
-                
+                <h1 className='mini-spacer'></h1>
                 </div>
                 <div className="ui three column grid" >
                 {this.state.dogs.map((dog) => {
                     return   <div className="column"><DogCard requestToMeet={this.requestToMeet} removeFavorite={this.removeFavorite}key={dog.id} userId={this.state.user_id} dog={dog}/></div>
                 })}
                 </div>
+             
 
             </React.Fragment>
         )

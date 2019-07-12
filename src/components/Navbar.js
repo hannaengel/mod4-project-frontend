@@ -43,8 +43,8 @@ export default class Navbar extends Component {
 
     render() {
         return(
-            <div>
-               <div class="ui top attached menu">
+            <div >
+               <div class="ui seven fluid item top attached menu borderless">
                 <div class="item">
 
                 <a class="item" href="http://localhost:3001/browse">
@@ -53,20 +53,22 @@ export default class Navbar extends Component {
                 </a>
                 </div>
 
-
                 <a href="http://localhost:3001/liked" class="item">
                 Favorites
                 </a>
-                <div class="right menu">
-                <div class="item">
-                  {this.state.username}
-                </div>
+                <a class='item'></a>
+              <a class='item bark-font'>
+                <h2 className='bark-font'>         BARK BROWSER         </h2>
+              </a>
+              <a class='item'></a>
+                
                 <a href="http://localhost:3001/profile" class="item">
-                Profile
+                <i class='user icon'></i>
+                  {this.state.username}
                 </a>
                 <div class="item">
-                <div onClick={this.logout} class="ui secondary button">Log Out</div>
-            </div>
+                <div onClick={this.logout} class="ui pink button">Log Out</div>
+           
             </div>
             </div>
 
