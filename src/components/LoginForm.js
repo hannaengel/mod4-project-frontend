@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Form } from 'semantic-ui-react'
-
+import logo from '../images/logo.png'
 import { Link, Redirect } from 'react-router-dom'
 
 
@@ -72,7 +72,7 @@ export default class LoginForm extends Component {
                   this.saveToken(json.jwt)
                   this.getProfile()
 
-                  
+
 
                   this.setState(prevState => ({
                     loggedIn: true
@@ -109,6 +109,8 @@ export default class LoginForm extends Component {
                <div className='login-section'>
                 <div className='login-div'>
                 <article className ='login'>
+                    <h2 id="login-title" className='bark-font'>         BARK BROWSER         </h2>
+                      <img id="login-icon" class="ui avatar image" src={logo} />
                 <h2>Sign in</h2>
                 <p>Not a member? <Link to="/users/new">Sign Up</Link></p>
                 <Form onSubmit={this.login}>

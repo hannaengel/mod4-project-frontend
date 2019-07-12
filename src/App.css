@@ -85,7 +85,7 @@
 }
 
 .ui.card {
-  height: 39em;
+  height: 42em;
   background-color: #DDF0FF;
   border: 3px solid #223127;
 }
@@ -103,7 +103,11 @@
 
 
 .login-div input[type="password"]{
-  width: 60% !important;
+  width: 100% !important;
+}
+
+#loginpassword{
+    width: 60% !important;
 }
 
 .login-div input[type="text"]{
@@ -250,11 +254,23 @@ body {
 .white{
   background-color: white !important;
   opacity: .8;
- 
+
 }
 
 .bark-font{
   font-family: 'Actor' !important;
   font-size: 22px;
+  color: black !important;
 }
 
+#button-div{
+  width:100%;
+}
+
+#login-title{
+  font-size: 40px;
+}
+
+#login-icon{
+  font-size: 25px;
+}
