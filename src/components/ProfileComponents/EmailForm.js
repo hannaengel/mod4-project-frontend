@@ -41,14 +41,14 @@ export default class EmailForm extends Component {
 
 
     render() {
-        return( 
+        return(
             <div>
                 <container className='login-section'>
-               
+
                  <Header  as='h1' dividing> Edit Default Email</Header>
-                
+
                 <Form className='create-form'>
-                    <TextArea onChange={this.handleChange} 
+                    <TextArea value={this.state.message_template} onChange={this.handleChange} 
 
                      />
 
@@ -56,7 +56,7 @@ export default class EmailForm extends Component {
                      <Button onClick={this.handleSubmit}>Save</Button>
                      </Form.Field>
                 </Form>
-            
+
                 </container>
             </div>
         )

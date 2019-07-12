@@ -79,12 +79,14 @@ export default class CreateUserFOrm extends Component {
                      <input name='zipcode' placeholder='zipcode' required/>
                      </Form.Field>
 
-                     <Form.Field>
-                       <Button onClick={this.handleSubmit}>Create Profile</Button>
-                     </Form.Field>
-                     <Form.Field>
-                     <Button onClick={this.backToLogin}>Return to Login</Button>
-                     </Form.Field>
+                     <div id="button-div">
+                       <Form.Field>
+                         <Button onClick={this.handleSubmit}>Create Profile</Button>
+                       </Form.Field>
+                       <Form.Field>
+                       <Button onClick={this.backToLogin}>Return to Login</Button>
+                       </Form.Field>
+                     </div>
                 </Form>
                 </Grid>
                 </article>
