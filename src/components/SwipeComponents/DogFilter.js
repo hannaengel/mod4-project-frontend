@@ -11,21 +11,55 @@ export default class DogFilter extends Component {
   }
 
   componentDidMount(){
+    console.log('in did mount')
+
     if (this.state.desiredSex === 'all-sexes') {
       let allBtn = document.getElementById("all-ages")
       allBtn.classList.add("active")
     }
+
+
     if (this.state.desiredAge === 'all-ages') {
       let allBtn = document.getElementById("all-sexes")
       allBtn.classList.add("active")
     }
 
       this.activateBtn(this.state.desiredAge)
-
       this.activateBtn(this.state.desiredSex)
 
     //add code to fetch dogs from backend here
+    this.fetchPets()
+  }
 
+  fetchPets = () => {
+    console.log('in fetch pets')
+    let url = new URL(`http://localhost:3000/api/v1/pets`)
+    let params = {}
+    let ageParam = ''
+    let sexParam = ''
+
+    if (this.state.desiredSex !== 'all-sexes') {
+      sexParam = this.state.desiredSex
+      params["gender"] = sexParam
+    }
+
+    if (this.state.desiredAge !== 'all-ages') {
+      ageParam = this.state.desiredAge
+      params["age"] = ageParam
+    }
+
+    url.search = new URLSearchParams(params)
+    console.log(url.href)
+
+    fetch(url.href, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('jwt')
+      }
+    })
+    .then(res=>res.json())
+    .then(json=> {
+      this.props.setDogs(json)
+    })
   }
 
   handleSexClick = (ev) => {
@@ -35,9 +69,10 @@ export default class DogFilter extends Component {
     let selectedBtn = document.getElementById(btnName)
     let removeBtn = document.getElementById(removeBtnName)
 
-      removeBtn.classList.remove("active")
-      this.setState({desiredSex: btnName})
-      this.activateBtn(btnName)
+    removeBtn.classList.remove("active")
+    this.setState({desiredSex: btnName}, () => this.fetchPets())
+    this.activateBtn(btnName)
+    this.fetchPets()
   }
 
   handleAgeClick = (ev) => {
@@ -47,9 +82,9 @@ export default class DogFilter extends Component {
     let selectedBtn = document.getElementById(btnName)
     let removeBtn = document.getElementById(removeBtnName)
 
-      removeBtn.classList.remove("active")
-      this.setState({desiredAge: btnName})
-      this.activateBtn(btnName)
+    removeBtn.classList.remove("active")
+    this.setState({desiredAge: btnName}, () => this.fetchPets())
+    this.activateBtn(btnName)
   }
 
   activateBtn = (btnName) => {
@@ -63,15 +98,15 @@ export default class DogFilter extends Component {
     <div class = "dog-form-wrapper">
       <div class = "age-icons">
         <div onClick={this.handleAgeClick} id="all-ages" name="all-ages" class="ui right attached button" role="button" tabindex="0">All</div>
-        <div onClick={this.handleAgeClick} id = "baby" name="baby" class="ui right attached button" role="button" tabindex="0">Baby</div>
-        <div onClick={this.handleAgeClick} id = "young" name="young" class="ui right attached button" role="button" tabindex="0">Young</div>
-        <div onClick={this.handleAgeClick} id = "adult" name="adult" class="ui right attached button" role="button" tabindex="0">Adult</div>
-        <div onClick={this.handleAgeClick}  id = "senior" name="senior" class="ui right attached button" role="button" tabindex="0">Senior</div>
+        <div onClick={this.handleAgeClick} id = "Baby" name="Baby" class="ui right attached button" role="button" tabindex="0">Baby</div>
+        <div onClick={this.handleAgeClick} id = "Young" name="Young" class="ui right attached button" role="button" tabindex="0">Young</div>
+        <div onClick={this.handleAgeClick} id = "Adult" name="Adult" class="ui right attached button" role="button" tabindex="0">Adult</div>
+        <div onClick={this.handleAgeClick}  id = "Senior" name="Senior" class="ui right attached button" role="button" tabindex="0">Senior</div>
       </div>
       <div class = "sex-icons">
         <div onClick={this.handleSexClick} id="all-sexes" name="all-sexes" class="ui right attached button" role="button" tabindex="0">All</div>
-        <div onClick={this.handleSexClick} id = "female" name="female" class="ui right attached button" role="button" tabindex="0"><i class = "venus icon"></i></div>
-        <div onClick={this.handleSexClick} id = "male" name="male" class="ui right attached button" role="button" tabindex="0"><i class = "mars icon"></i></div>
+        <div onClick={this.handleSexClick} id = "Female" name="Female" class="ui right attached button" role="button" tabindex="0"><i class = "venus icon"></i></div>
+        <div onClick={this.handleSexClick} id = "Male" name="Male" class="ui right attached button" role="button" tabindex="0"><i class = "mars icon"></i></div>
       </div>
     </div>
 

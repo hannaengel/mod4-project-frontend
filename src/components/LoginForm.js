@@ -19,7 +19,6 @@ export default class LoginForm extends Component {
         if (this.getToken()) {
           this.getProfile()
         }
-        this.logout = this.logout.bind(this)
     }
 
     getToken(jwt) {
@@ -97,11 +96,11 @@ export default class LoginForm extends Component {
 
 
     render() {
-      
+
        return(
         // !this.state.loggedIn?
         //  <Redirect push to="/profile"/> :
-       
+
             <div>
                 <header className='spacer'> </header>
                <div className='login-section'>
@@ -129,7 +128,7 @@ export default class LoginForm extends Component {
                      {/*</Link> */}
 
                      </Form.Field>
- 
+
                 </Form>
                 </article>
                 </div>
