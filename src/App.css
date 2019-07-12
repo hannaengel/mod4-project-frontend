@@ -68,8 +68,26 @@
   text-align: center !important;
 }
 
+ .ui.three.column.grid {
+  margin-top: 80px;
+}
+
+.ui.medium.bordered.image {
+  border: 1px solid #223127;
+}
+
+.ui.three.column.grid .column {
+  padding-left: 50px;
+}
+
 .icon {
   margin: 0px !important;
+}
+
+.ui.card {
+  height: 42em;
+  background-color: #DDF0FF;
+  border: 2px solid #223127;
 }
 
 .login-div{
@@ -84,7 +102,7 @@
 }
 
 
-.login-div input[type="password"]{
+#loginpassword{
   width: 40% !important;
 }
 
@@ -94,6 +112,7 @@
 
 .login-div input[type="submit"]{
   width: 20% !important;
+  text-align: center !important;
 }
 
 body {

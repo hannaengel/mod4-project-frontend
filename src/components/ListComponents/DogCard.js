@@ -15,6 +15,8 @@ export default class DogCard extends Component {
       //to find the user_pets id. Then pass this back up to DogList and then delete it when removing the pet
       //OR you can create a custom route in the User Controller to delete the petId from their pets array
 
+
+
       handleClick = e => {
         e.preventDefault();
         this.setState(prevState => ({ isFlipped: !prevState.isFlipped }));
@@ -24,7 +26,7 @@ export default class DogCard extends Component {
 
         return (
             <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal">
-              <CardFront key="front" removeFavorite={this.props.removeFavorite} dog={this.props.dog} onClick={this.handleClick}>
+              <CardFront key="front" requestToMeet={this.props.requestToMeet} removeFavorite={this.props.removeFavorite} dog={this.props.dog} onClick={this.handleClick}>
               </CardFront>
 
               <CardBack key="back" dog={this.props.dog} onClick={this.handleClick}>
