@@ -85,15 +85,15 @@
 
 
 .login-div input[type="password"]{
-  width: 40% !important;
+  width: 60% !important;
 }
 
 .login-div input[type="text"]{
-  width: 40% !important;
+  width: 60% !important;
 }
 
 .login-div input[type="submit"]{
-  width: 20% !important;
+  width: 40% !important;
 }
 
 body {
@@ -116,6 +116,13 @@ body {
 .small-spacer{
   margin-top: 70px !important;
   margin-bottom: 30px !important;
+    padding: 0;
+    border: 0;
+}
+
+.mini-spacer{
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
     padding: 0;
     border: 0;
 }
@@ -185,5 +192,31 @@ body {
 }
 
 .mint{
-  background-color: #84d9be;
+  background-color: #84d9be !important;
 }
+
+.paw{
+  padding: 20px !important;
+  color: black;
+}
+
+.fav-cover {
+  background-image: url("./images/background.jpg") !important;
+  -webkit-background-size: 100% auto;
+  -moz-background-size: 100% auto;
+  -ms-background-size: 100% auto;
+  -o-background-size: 100% auto;
+  background-size: 100% auto;
+
+}
+.white{
+  background-color: white !important;
+  opacity: .8;
+ 
+}
+
+.bark-font{
+  font-family: 'Actor' !important;
+  font-size: 22px;
+}
+
