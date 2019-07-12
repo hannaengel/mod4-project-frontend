@@ -80,8 +80,20 @@
   opacity: 0.9;
   position: relative; left: 50%;
   transform: translateX(-50%);
-  width: 70%
+  width: 40%
+}
 
+
+.login-div input[type="password"]{
+  width: 40% !important;
+}
+
+.login-div input[type="text"]{
+  width: 40% !important;
+}
+
+.login-div input[type="submit"]{
+  width: 20% !important;
 }
 
 body {
@@ -102,11 +114,12 @@ body {
     border: 0;
 }
 .small-spacer{
-  margin-top: 30px !important;
+  margin-top: 70px !important;
   margin-bottom: 30px !important;
     padding: 0;
     border: 0;
 }
+
 
 .list-top-image{
   background-image: url("./images/list..png");
@@ -118,7 +131,6 @@ body {
 
   padding: 8%;
   text-align: left;
-
 }
 
 .swipe-image {
@@ -126,6 +138,8 @@ body {
   margin-left:auto;
   margin-right:auto;
   max-width: 300px;
+  border-radius: 10px;
+  border: 2px solid black;
 }
 
 .cover {
