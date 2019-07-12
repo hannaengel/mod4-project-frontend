@@ -19,16 +19,16 @@ export default class DogDisplay extends Component {
         this.setState(prevState => ({
           isLiked: false }), ()=> console.log(this.state.isLiked))
         this.props.onNext()
-    
+
     }
     handleFavorite = () => {
        this.setState(prevState => ({
          isLiked: true}), ()=> console.log(this.state.isLiked));
          this.props.onFavorite(this.props.dog)
     }
-   
+
     render() {
-      
+
         const {medium_photo_url, name, age, gender, breed_primary} = this.props.dog
         return(
             <div class="ui three column grid">
@@ -38,7 +38,7 @@ export default class DogDisplay extends Component {
                  <h1 className='spacer'></h1>
                  <h1 className='spacer'></h1>
                 <span class="left floated like" onClick={this.handleFavorite}>
-                  {this.state.isLiked===true? 
+                  {this.state.isLiked===true?
                     <i id='favoriteIcon' className="huge like icon heart"></i>:
                     <i id='favoriteIcon' className="huge like icon"></i>}
                  </span>
@@ -57,9 +57,8 @@ export default class DogDisplay extends Component {
                 </div>
                 </h2>
                  <img alt='dog' className='swipe-image' src={medium_photo_url}/>
-                 <div>
+                 <div id="age-div">
                     {age}
-                   
                 </div>
                 </p>
                 </div>

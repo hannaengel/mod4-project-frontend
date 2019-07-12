@@ -48,7 +48,7 @@ export default class CreateUserFOrm extends Component {
     render() {
 
         return(
-            <div className='body'>
+            <div>
                 <header className='spacer'> </header>
                <container className='login-section'>
                 <div className='login-div'>
@@ -80,7 +80,7 @@ export default class CreateUserFOrm extends Component {
                      </Form.Field>
 
                      <Form.Field>
-                     <Button onClick={this.handleSubmit}>Create Profile</Button>
+                       <Button onClick={this.handleSubmit}>Create Profile</Button>
                      </Form.Field>
                      <Form.Field>
                      <Button onClick={this.backToLogin}>Return to Login</Button>
