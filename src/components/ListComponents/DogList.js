@@ -10,7 +10,8 @@ export default class DogList extends Component {
         this.state = {
             dogs: [],
             user_id: null,
-            username: ''
+            username: '',
+            message_template: ''
         }
       }
 
@@ -48,14 +49,19 @@ export default class DogList extends Component {
       let dogId = dog.id
       let userId = this.state.user_id
 
-      // fetch(`http://localhost:3000/api/v1/profile`, {
-      //   method: "DELETE",
-      //   headers: {
-      //     Accept: "application/json",
-      //     "Content-Type": "application/json"
-      //   },
-      //   body: JSON.stringify({ image_id: imageID, content: comment.content })
-      // })
+      let token = localStorage.getItem("jwt")
+      return fetch(`http://localhost:3000/api/v1/removePet`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({dogId: dogId, userId: userId})
+      })
+      .then(res=>res.json())
+      .then(json => {
+        console.log('removed dog from favorite')
+        this.fetchDogs()
+      })
 
     }
 
@@ -68,11 +74,24 @@ export default class DogList extends Component {
       })
       .then(res=>res.json())
       .then(json=> {
+        console.log(json)
         this.setState({
           user_id: json.user.id,
-          username: json.user.username
+          username: json.user.username,
+          message_template: json.user.message_template
         })
       })
+    }
+
+    requestToMeet = (dog) => {
+      console.log('in request to meet')
+      console.log(dog)
+      let email_address = dog.email_address
+      let body_text = `Hello,%0D%0A%0D%0A${this.state.message_template}%0D%0A%0D%0ASincerely,%0D%0A${this.state.username}`
+
+      window.location.href = `mailto:${email_address}?subject=I Am Interested In Meeting This Pup!&body=${body_text}`;
+
+
     }
 
     render() {
@@ -93,7 +112,7 @@ export default class DogList extends Component {
                 </div>
                 <div className="ui three column grid" >
                 {this.state.dogs.map((dog) => {
-                    return   <div className="column"><DogCard removeFavorite={this.removeFavorite}key={dog.id} userId={this.state.user_id} dog={dog}/></div>
+                    return   <div className="column"><DogCard requestToMeet={this.requestToMeet} removeFavorite={this.removeFavorite}key={dog.id} userId={this.state.user_id} dog={dog}/></div>
                 })}
                 </div>
              

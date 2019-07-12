@@ -8,8 +8,11 @@ handleClick = e => {
 }
 
   handleRemove = () => {
-    console.log('in handle remove')
     this.props.removeFavorite(this.props.dog)
+  }
+
+  requestToMeet = () => {
+    this.props.requestToMeet(this.props.dog)
   }
 
 
@@ -31,7 +34,7 @@ handleClick = e => {
                     <div class="extra content">
                     <div class="ui two buttons">
                         <div onClick={this.handleRemove} class="ui basic grey button">Remove</div>
-                        <button class="ui pink button">Request to Meet</button>
+                        <button onClick={this.requestToMeet} class="ui pink button">Request to Meet</button>
                     </div>
                     </div>
                 </div>
