@@ -23,6 +23,7 @@ export default class SwipeCardContainer extends Component {
 
       getProfile = () => {
         let token = localStorage.getItem("jwt")
+        console.log(token)
         fetch('http://localhost:3000/api/v1/profile', {
           headers: {
             'Authorization': 'Bearer ' + token
@@ -30,7 +31,7 @@ export default class SwipeCardContainer extends Component {
         })
         .then(res=>res.json())
         .then(json=> {
-          console.log(json)
+          console.log('Json User', json.user)
           this.setState({
             user_id: json.user.id
           })
@@ -40,7 +41,6 @@ export default class SwipeCardContainer extends Component {
 
     //customize filtered dogs here and add this method as onclick for the buttons
     fetchDogs = () =>{
-      console.log('in fetch dogs')
         fetch('http://localhost:3000/api/v1/pets', {
           method: 'POST',
           headers: {
@@ -57,7 +57,7 @@ export default class SwipeCardContainer extends Component {
 
     getDogId = () => {
       let selectedDog = this.state.dogs[this.state.selectedDog]
-      console.log(selectedDog)
+      
       this.setState({dog_id: selectedDog.id})
     }
 
@@ -72,8 +72,7 @@ export default class SwipeCardContainer extends Component {
       }
 
       handleFavorite = (dog) => {
-        console.log('in handle favorite')
-        console.log(dog.id)
+      
         let user_id = this.state.user_id
         return fetch(`http://localhost:3000/api/v1/user_pets`, {
           method: 'POST',
@@ -88,13 +87,13 @@ export default class SwipeCardContainer extends Component {
       }
 
     render() {
-      {document.body.style = 'background: white;'}
+      {document.body.style = 'background: whitesmoke;'}
 
         return (
             <div>
                 <Navbar />
                 <h1 className='small-spacer'></h1>
-                
+
                { this.state.dogs.length>0?
                <DogDisplay favorite={this.state.is_favorite} dog={this.state.dogs[this.state.selectedDog]} onClick={this.handleClick} onNext={this.handleNext} onFavorite={this.handleFavorite}/>: null}
                 

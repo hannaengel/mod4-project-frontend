@@ -19,7 +19,7 @@ export default class LoginForm extends Component {
         if (this.getToken()) {
           this.getProfile()
         }
-        this.logout = this.logout.bind(this)
+       
     }
 
     getToken(jwt) {
@@ -38,7 +38,8 @@ export default class LoginForm extends Component {
       .then(json=> {
         this.setState({user: json.user})
         console.log('user:', json.user)
-        localStorage.setItem("user_id", json.user.id)
+        this.props.onLogin(json.user);
+        // localStorage.setItem("user_id", json.user.id)
       })
     }
 
@@ -67,10 +68,14 @@ export default class LoginForm extends Component {
         fetch(URL, headers)
             .then(res=>res.json())
             .then(json => {
+                debugger
+                this.props.onLogin(json.user);
                 console.log('login:', json)
                 if (json && json.jwt) {
                   this.saveToken(json.jwt)
                   this.getProfile()
+
+                  
 
                   this.setState(prevState => ({
                     loggedIn: true

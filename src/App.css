@@ -131,14 +131,19 @@ background-image: url("./images/wall.png") !important;
 }
 
 .heart{
-  color: pink !important;
+  color: red !important;
+  transition: 
 }
 
 .bordered{
   background-color: whitesmoke;
-  border: #282c34;
+  border: black;
   border-radius: 5px;
-  
-  border-style: solid;
+  border-width: 10px;
+  border-style: double;
   padding: 7%;
+}
+
+.arrow{
+  color: #49b8e6 !important;
 }

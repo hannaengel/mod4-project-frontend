@@ -12,20 +12,60 @@ import Profile from './components/ProfileComponents/Profile.js'
 
 
 
-function App() {
+class App extends React.Component{
+
+  constructor() {
+    super();
+    this.state = {
+      user: null
+    };
+  }
+
+  
+  // getProfile = () => {
+  //   let token = localStorage.getItem("jwt")
+  //   console.log(token)
+  //   fetch('http://localhost:3000/api/v1/profile', {
+  //     headers: {
+  //       'Authorization': 'Bearer ' + token
+  //     }
+  //   })
+  //   .then(res=>res.json())
+  //   .then(json=> {
+  //     console.log('Json User', json.user)
+  //     this.setState({
+  //       user_id: json.user.id
+  //     })
+  //   })
+  // }
+
+  updateUser = (user) => {
+
+    this.setState({user: user})
+  }
+
+  render(){
   return (
     <div className="App">
 
       <Router>
         {/*<Navbar />*/}
-        <Route exact path="/" component={LoginForm} />
-        <Route path={'/users/new'} component={CreateUserForm} />
+        <Route exact path="/" 
+          render={(props) => (
+            <LoginForm {...props}
+              onLogin={this.updateUser}
+              user={this.state.user}
+            />
+          )}
+        />
+        <Route path={'/users/new'} render={(props) => <CreateUserForm {...props} onUserCreated={this.updateUser}/>}/>
         <Route path={'/liked'} component={DogList} />
         <Route path={'/profile'} render={(props) => <Profile {...props}/>}/>
         <Route path={'/browse'} component={SwipeCardContainer} />
       </Router>
     </div>
   );
+}
 }
 
 export default App;
