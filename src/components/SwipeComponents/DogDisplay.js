@@ -6,52 +6,31 @@ export default class DogDisplay extends Component {
     constructor(props){
         super(props)
         this.state = {
-          isFavorite: this.props.favorite
+          isLiked: false
         }
-        this.checkFavorite()
       }
 
     handleClick = e => {
         this.props.onClick(e)
     }
 
-    checkFavorite = () => {
-        console.log('in lower favorite')
-        console.log(this.state.isFavorite)
-        let favoriteIcon = document.getElementById("favoriteIcon")
-        if (this.state.isFavorite === true) {
-          console.log('in if')
-          favoriteIcon.classList.add("active")
-        }
-      }
 
     handleNext = () => {
-        let favoriteIcon = document.getElementById("favoriteIcon")
-        favoriteIcon.style.pointerEvents = 'auto'; 
-        favoriteIcon.classList.remove('heart')
+        this.setState(prevState => ({
+          isLiked: false }), ()=> console.log(this.state.isLiked))
         this.props.onNext()
-        this.checkFavorite()
+    
     }
     handleFavorite = () => {
-        let favoriteIcon = document.getElementById("favoriteIcon")
-        if (!this.state.isFavorite===true){
-        favoriteIcon.classList.add('heart')
-       
-        this.props.onFavorite(this.props.dog)
-        this.setState({
-          isFavorite: true
-        }, () => this.checkFavorite())}
+       this.setState(prevState => ({
+         isLiked: true}), ()=> console.log(this.state.isLiked));
+         this.props.onFavorite(this.props.dog)
     }
    
     render() {
-<<<<<<< HEAD
+      
         const {medium_photo_url, name, age, gender, breed_primary} = this.props.dog
-        return( 
-=======
-      console.log(this.props.dog)
-        const {medium_photo_url, name, age, description, gender, breed_primary, status} = this.props.dog
         return(
->>>>>>> 81d989230e466fa9c26b1bd85c11d5e5b70a7c37
             <div class="ui three column grid">
 
                 <div class='column'>
@@ -59,7 +38,9 @@ export default class DogDisplay extends Component {
                  <h1 className='spacer'></h1>
                  <h1 className='spacer'></h1>
                 <span class="left floated like" onClick={this.handleFavorite}>
-                    <i id='favoriteIcon' class="huge like icon"></i>
+                  {this.state.isLiked===true? 
+                    <i id='favoriteIcon' className="huge like icon heart"></i>:
+                    <i id='favoriteIcon' className="huge like icon"></i>}
                  </span>
                 </div>
 
@@ -68,9 +49,9 @@ export default class DogDisplay extends Component {
                 <h2 class="ui header">
                 <div class="content">
                     {name}
-                    {gender==='female'?
-                     <i className='arrow' class="huge arrow circle right icon"></i>
-                     : <i class="heart icon"></i>
+                    {gender==='Female'?
+                     <i className="small venus icon"></i>
+                     : <i class="small mars icon"></i>
                      }
                     <div class="sub header">{breed_primary}</div>
                 </div>
@@ -78,11 +59,7 @@ export default class DogDisplay extends Component {
                  <img alt='dog' className='swipe-image' src={medium_photo_url}/>
                  <div>
                     {age}
-<<<<<<< HEAD
-=======
-                    <br></br>
-                    {gender}
->>>>>>> 81d989230e466fa9c26b1bd85c11d5e5b70a7c37
+                   
                 </div>
                 </p>
                 </div>

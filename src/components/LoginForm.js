@@ -19,10 +19,6 @@ export default class LoginForm extends Component {
         if (this.getToken()) {
           this.getProfile()
         }
-<<<<<<< HEAD
-       
-=======
->>>>>>> 81d989230e466fa9c26b1bd85c11d5e5b70a7c37
     }
 
     getToken(jwt) {

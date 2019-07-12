@@ -33,11 +33,7 @@ export default class CreateUserFOrm extends Component {
         }
         fetch(URL, headers)
             .then(res=>res.json())
-<<<<<<< HEAD
-            window.location.replace("http://localhost:3001/browse");
-=======
             window.location.replace("http://localhost:3001/");
->>>>>>> 81d989230e466fa9c26b1bd85c11d5e5b70a7c37
     }
 
     handleSubmit = ()=>{

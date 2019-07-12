@@ -4,22 +4,21 @@ import React, { Component } from 'react'
 export default class SwipeCardFront extends Component {
 
     constructor(props){
-      super(props)
-      this.state = {
-        isFavorite: this.props.favorite
+        super(props);
+        this.state = {
+          isLiked: false
+        };
       }
-      this.checkFavorite()
-    }
 
-    checkFavorite = () => {
-      console.log('in lower favorite')
-      console.log(this.state.isFavorite)
-      let favoriteIcon = document.getElementById("favoriteIcon")
-      if (this.state.isFavorite === true) {
-        console.log('in if')
-        favoriteIcon.classList.add("active")
-      }
-    }
+    // checkFavorite = () => {
+    //   console.log('in lower favorite')
+    //   console.log(this.state.isFavorite)
+    //   let favoriteIcon = document.getElementById("favoriteIcon")
+    //   if (this.state.isFavorite === true) {
+    //     console.log('in if')
+    //     favoriteIcon.classList.add("active")
+    //   }
+    // }
 
     handleClick = e => {
         this.props.onClick(e)
@@ -30,10 +29,10 @@ export default class SwipeCardFront extends Component {
         this.checkFavorite()
     }
     handleFavorite = () => {
-        this.props.onFavorite(this.props.dog)
+        if(!this.state.isLiked){
         this.setState({
           isFavorite: true
-        }, () => this.checkFavorite())
+        }, () => console.log('LIKE STATE :', this.state.isLiked))}
     }
     render() {
         return(
