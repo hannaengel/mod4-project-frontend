@@ -33,11 +33,19 @@ export default class CreateUserFOrm extends Component {
         }
         fetch(URL, headers)
             .then(res=>res.json())
+<<<<<<< HEAD
             window.location.replace("http://localhost:3001/browse");
+=======
+            window.location.replace("http://localhost:3001/");
+>>>>>>> 81d989230e466fa9c26b1bd85c11d5e5b70a7c37
     }
 
     handleSubmit = ()=>{
         this.createUser()
+    }
+
+    backToLogin = () => {
+      window.location.replace("http://localhost:3001/");
     }
 
 
@@ -55,28 +63,31 @@ export default class CreateUserFOrm extends Component {
                     <Form.Field onChange={this.handleChange}>
 
                      <label>Username</label>
-                     <input name='username' placeholder='username' />
+                     <input name='username' placeholder='username' required/>
                      </Form.Field>
 
                      <Form.Field  onChange={this.handleChange}>
                      <label>Password</label>
-                     <input name='password' placeholder='password' />
+                     <input type="password" name='password' placeholder='password' required/>
                      </Form.Field>
 
                      <Form.Field  onChange={this.handleChange}>
                      <label>Email</label>
-                     <input name='email_address' placeholder='email' />
+                     <input type="email"name='email_address' placeholder='email' required/>
                      </Form.Field>
 
 
 
                      <Form.Field  onChange={this.handleChange}>
                      <label>Zipcode</label>
-                     <input name='zipcode' placeholder='zipcode' />
+                     <input name='zipcode' placeholder='zipcode' required/>
                      </Form.Field>
 
                      <Form.Field>
                      <Button onClick={this.handleSubmit}>Create New User</Button>
+                     </Form.Field>
+                     <Form.Field>
+                     <Button onClick={this.backToLogin}>Return to Login</Button>
                      </Form.Field>
                 </Form>
                 </Grid>

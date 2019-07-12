@@ -8,7 +8,7 @@ export default class EditForm extends Component {
           //removed password
             user_id: this.props.user.user_id,
             username: this.props.user.username,
-            email: this.props.user.email,
+            email: this.props.user.email_address,
             zipcode: this.props.user.zipcode
         };
     }

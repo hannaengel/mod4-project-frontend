@@ -8,15 +8,18 @@ export default class DogList extends Component {
     constructor() {
         super();
         this.state = {
-            dogs: []
-        };
-    }
+            dogs: [],
+            user_id: null,
+            username: ''
+        }
+      }
 
     componentDidMount(){
         this.fetchDogs()
+        this.getUser()
     }
 
-    fetchDogs = () =>{
+    fetchDogs = () => {
         {/*fetch('http://localhost:3000/api/v1/pets')
             .then(res=>res.json())
             .then(data => {
@@ -40,8 +43,37 @@ export default class DogList extends Component {
         })
     }
 
-    
+    removeFavorite = (dog) => {
+      console.log('in top remove favorite')
+      let dogId = dog.id
+      let userId = this.state.user_id
 
+      // fetch(`http://localhost:3000/api/v1/profile`, {
+      //   method: "DELETE",
+      //   headers: {
+      //     Accept: "application/json",
+      //     "Content-Type": "application/json"
+      //   },
+      //   body: JSON.stringify({ image_id: imageID, content: comment.content })
+      // })
+
+    }
+
+    getUser = () => {
+      let token = localStorage.getItem("jwt")
+      fetch('http://localhost:3000/api/v1/profile', {
+        headers: {
+          'Authorization': 'Bearer ' + token
+        }
+      })
+      .then(res=>res.json())
+      .then(json=> {
+        this.setState({
+          user_id: json.user.id,
+          username: json.user.username
+        })
+      })
+    }
 
     render() {
         return(
@@ -62,7 +94,7 @@ export default class DogList extends Component {
                 </div>
                 <div className="ui three column grid" >
                 {this.state.dogs.map((dog) => {
-                    return   <div className="column"><DogCard key={dog.id} dog={dog}/></div>
+                    return   <div className="column"><DogCard removeFavorite={this.removeFavorite}key={dog.id} userId={this.state.user_id} dog={dog}/></div>
                 })}
                 </div>
 

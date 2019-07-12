@@ -44,8 +44,14 @@ export default class DogDisplay extends Component {
     }
    
     render() {
+<<<<<<< HEAD
         const {medium_photo_url, name, age, gender, breed_primary} = this.props.dog
         return( 
+=======
+      console.log(this.props.dog)
+        const {medium_photo_url, name, age, description, gender, breed_primary, status} = this.props.dog
+        return(
+>>>>>>> 81d989230e466fa9c26b1bd85c11d5e5b70a7c37
             <div class="ui three column grid">
 
                 <div class='column'>
@@ -72,6 +78,11 @@ export default class DogDisplay extends Component {
                  <img alt='dog' className='swipe-image' src={medium_photo_url}/>
                  <div>
                     {age}
+<<<<<<< HEAD
+=======
+                    <br></br>
+                    {gender}
+>>>>>>> 81d989230e466fa9c26b1bd85c11d5e5b70a7c37
                 </div>
                 </p>
                 </div>
@@ -82,7 +93,7 @@ export default class DogDisplay extends Component {
                  <h1 className='spacer'></h1>
                  <h1 className='spacer'></h1>
 
-                
+
 
                 <span class="right floated arrow" onClick={this.handleNext}>
                      <i className='arrow' class="huge arrow circle right icon"></i>
