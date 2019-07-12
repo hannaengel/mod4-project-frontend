@@ -16,10 +16,12 @@ export default class SwipeCardContainer extends Component {
           selectedDog: 0,
           dogs: [],
           dog_id: null,
-          is_favorite: false
+          is_favorite: false,
+          sexFilter: '',
+          ageFilter: ''
         };
         this.getProfile()
-        this.fetchDogs()
+        this.fetchDogsFromDB()
       }
 
 
@@ -40,7 +42,7 @@ export default class SwipeCardContainer extends Component {
       }
 
     //customize filtered dogs here and add this method as onclick for the buttons
-    fetchDogs = () =>{
+    fetchDogsFromDB = () =>{
       console.log('in fetch dogs')
         fetch('http://localhost:3000/api/v1/pets', {
           method: 'POST',
@@ -57,7 +59,6 @@ export default class SwipeCardContainer extends Component {
     }
 
     getDogId = () => {
-      console.log('in get dog id')
       let selectedDog = this.state.dogs[this.state.selectedDog]
       this.setState({dog_id: selectedDog.id})
     }
@@ -71,13 +72,36 @@ export default class SwipeCardContainer extends Component {
         this.setState(prevState => ({ isFlipped: !prevState.isFlipped }));
       }
       handleNext = () => {
-        this.setState(prevState => ({ selectedDog: prevState.selectedDog + 1}));
-        this.getDogId()
+        if((this.state.selectedDog + 1) < this.state.dogs.length - 1) {
+          this.setState(prevState => ({ selectedDog: prevState.selectedDog + 1}));
+          this.getDogId()
+        } else {
+          console.log('adding dogs')
+          this.addDogsToDB()
+        }
+      }
+
+      addDogsToDB = () => {
+        let sexFilter = this.state.sexFilter
+        let ageFilter = this.state.ageFilter
+        return fetch(`http://localhost:3000/api/v1/pets`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({"gender": sexFilter, "age": ageFilter})
+        })
+        .then(res=>res.json())
+        .then(json => {
+          let oldDogs = this.state.dogs
+          console.log(oldDogs)
+          this.setState(prevState => ({
+            dogs: json
+          }))
+        })
       }
 
       handleFavorite = (dog) => {
-        console.log('in handle favorite')
-        console.log(dog.id)
         let user_id = this.state.user_id
         return fetch(`http://localhost:3000/api/v1/user_pets`, {
           method: 'POST',
@@ -89,6 +113,10 @@ export default class SwipeCardContainer extends Component {
         })
         .then(res=>res.json())
         .then(this.setState({is_favorite: true}))
+      }
+
+      updateFiltersState = (filterHash) => {
+        this.setState(filterHash)
       }
 
 
@@ -103,7 +131,7 @@ export default class SwipeCardContainer extends Component {
                  { this.state.dogs.length>0?
                  <DogDisplay favorite={this.state.is_favorite} dog={this.state.dogs[this.state.selectedDog]} onClick={this.handleClick} onNext={this.handleNext} onFavorite={this.handleFavorite}/>: null}
 
-                 <DogFilter setDogs={this.setDogs} />
+                 <DogFilter updateFiltersState={this.updateFiltersState} setDogs={this.setDogs} />
 
               </div>
           )

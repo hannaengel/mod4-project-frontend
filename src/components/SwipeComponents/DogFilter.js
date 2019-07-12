@@ -11,8 +11,6 @@ export default class DogFilter extends Component {
   }
 
   componentDidMount(){
-    console.log('in did mount')
-
     if (this.state.desiredSex === 'all-sexes') {
       let allBtn = document.getElementById("all-ages")
       allBtn.classList.add("active")
@@ -32,7 +30,6 @@ export default class DogFilter extends Component {
   }
 
   fetchPets = () => {
-    console.log('in fetch pets')
     let url = new URL(`http://localhost:3000/api/v1/pets`)
     let params = {}
     let ageParam = ''
@@ -45,10 +42,12 @@ export default class DogFilter extends Component {
 
     if (this.state.desiredAge !== 'all-ages') {
       ageParam = this.state.desiredAge
+      console.log(ageParam)
       params["age"] = ageParam
     }
 
     url.search = new URLSearchParams(params)
+
     console.log(url.href)
 
     fetch(url.href, {
@@ -58,6 +57,8 @@ export default class DogFilter extends Component {
     })
     .then(res=>res.json())
     .then(json=> {
+      console.log('in fetchpets')
+      console.log(json)
       this.props.setDogs(json)
     })
   }
@@ -71,8 +72,8 @@ export default class DogFilter extends Component {
 
     removeBtn.classList.remove("active")
     this.setState({desiredSex: btnName}, () => this.fetchPets())
+    this.props.updateFiltersState({sexFilter: btnName})
     this.activateBtn(btnName)
-    this.fetchPets()
   }
 
   handleAgeClick = (ev) => {
@@ -84,6 +85,7 @@ export default class DogFilter extends Component {
 
     removeBtn.classList.remove("active")
     this.setState({desiredAge: btnName}, () => this.fetchPets())
+    this.props.updateFiltersState({ageFilter: btnName})
     this.activateBtn(btnName)
   }
 
