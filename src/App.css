@@ -56,7 +56,8 @@
 }
 
 .dog-form-wrapper{
-  margin-top: 80px;
+  margin-top: 40px;
+  margin-bottom: 20px;
 }
 
 .sex-icons {
@@ -101,7 +102,8 @@ body {
     border: 0;
 }
 .small-spacer{
-  margin: 5%;
+  margin-top: 30px !important;
+  margin-bottom: 30px !important;
     padding: 0;
     border: 0;
 }
@@ -109,7 +111,7 @@ body {
 .list-top-image{
   background-image: url("./images/list..png");
   padding: 10px;
-  
+
 }
 
 .profile-header{
@@ -138,7 +140,7 @@ background-image: url("./images/wall.png") !important;
   background-color: whitesmoke;
   border: #282c34;
   border-radius: 5px;
-  
+
   border-style: solid;
   padding: 7%;
 }

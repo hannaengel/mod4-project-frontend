@@ -13,6 +13,7 @@ export default class DogDisplay extends Component {
         this.props.onFavorite(this.props.dog)
     }
     render() {
+      console.log(this.props.dog)
         const {medium_photo_url, name, age, description, gender, breed_primary, status} = this.props.dog
         return(
             <div class="ui three column grid">
